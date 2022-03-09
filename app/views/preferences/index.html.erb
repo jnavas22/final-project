@@ -1,0 +1,249 @@
+<div>
+  <div>
+    <h1>
+      <%= @current_user.first_name %>'s Current Preferences:
+    </h1>
+  </div>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Answer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Number of roommates</th>
+      <td><%= @list_of_preferences.at(0).roommate_num%></td>
+    </tr>
+    <tr>
+      <th scope="row">Number of bathrooms</th>
+      <td><%= @list_of_preferences.at(0).bathroom_num%></td>
+    </tr>
+    <tr>
+      <th scope="row">Person Type</th>
+      <td><%= @list_of_preferences.at(0).person_type%></td>
+    </tr>
+            <tr>
+      <th scope="row">OK with roommate who smokes</th>
+      <td><%= @list_of_preferences.at(0).smoker%></td>
+    </tr>
+    <tr>
+      <th scope="row">Max Rent</th>
+      <td>$<%= @list_of_preferences.at(0).max_rent%></td>
+    </tr>
+    <tr>
+      <th scope="row">Elevator</th>
+      <td><%= @list_of_preferences.at(0).elevator%></td>
+    </tr>
+    <tr>
+      <th scope="row">Doorman</th>
+      <td><%= @list_of_preferences.at(0).doorman%></td>
+    </tr>
+    <tr>
+      <th scope="row">Pet-friendly</th>
+      <td><%= @list_of_preferences.at(0).pets%></td>
+    </tr>
+    <tr>
+      <th scope="row">Close to public transportation</th>
+      <td><%= @list_of_preferences.at(0).transportation%></td>
+    </tr>
+    <tr>
+      <th scope="row">Air conditioner</th>
+      <td><%= @list_of_preferences.at(0).air_conditioner%></td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<div>
+  <div>
+    <h2>
+      Update Preferences:
+    </h2>
+    <form action="/modify_preference/:path_id" method="post">
+      <div>
+        <label class="col-form-label mt-4" for="roommate_num">How many roommates are you looking for?</label>
+        <select class="custom-select" id="roommate_num" name="query_roommate_num">
+          <option selected>Choose...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div>
+        <label class="col-form-label mt-4" for="bathroom_num">How many bathrooms should your apartment have?</label>
+        <select class="custom-select" id="bathroom_num" name="query_bathroom_num">
+          <option selected>Choose...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div>
+        <label class="col-form-label mt-4" for="working-type">Are you a morning person/night owl?</label>
+        <select class="custom-select" id="working-type" name="query_person_type">
+          <option selected>Choose...</option>
+          <option value="morning person">Morning person</option>
+          <option value="night owl">Night owl</option>
+        </select>
+      </div>
+      <div>
+        <label class="col-form-label mt-4" for="amenities">Which amenities should must your apartment include?</label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="laundry_type" name = "query_laundry">
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="doorman_type" name="query_doorman">
+          <label class="form-check-label" for="doorman_type">Doorman</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="elevator_type" name="query_elevator">
+          <label class="form-check-label" for="elevator_type">Elevator</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="air_conditioner_type" name="query_air_conditioner">
+          <label class="form-check-label" for="air_conditioner_type">Air-conditioner</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="pet_type" name = "query_pets">
+          <label class="form-check-label" for="pet_type">Pet-friendly</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="transportation_type" name="query_transportation">
+          <label class="form-check-label" for="transportation_type">Easy access to public transportation</label>
+        </div>
+      </div>
+      <div>
+        <label class="col-form-label mt-4" for="smoking-type">Are you a smoker</label>
+        <select class="custom-select" id="smoking-type" name="query_smoker">
+          <option selected>Choose...</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label mt-4">What is the maximum per-person rent you are willing to pay?</label>
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="text" class="form-control" name="query_max_rent" placeholder="e.g. 2,000" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-text">.00</span>
+          </div>
+          <button type="submit" class="btn btn-primary">Update preferences </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+<h3> Preference History </h3>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          User
+        </th>
+        <th>
+          Pets
+        </th>
+        <th>
+          Max rent
+        </th>
+        <th>
+          Person type
+        </th>
+        <th>
+          Laundry
+        </th>
+        <th>
+          Doorman
+        </th>
+        <th>
+          Roommate num
+        </th>
+        <th>
+          Smoker
+        </th>
+        <th>
+          Bathroom num
+        </th>
+        <th>
+          Elevator
+        </th>
+        <th>
+          Transportation
+        </th>
+        <th>
+          Air conditioner
+        </th>
+        <th>
+          Created at
+        </th>
+        <th>
+          Updated at
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% @list_of_preferences.each do |a_preference| %>
+        <tr>
+          <td>
+            <%= a_preference.id %>
+          </td>
+          <td>
+            <%= a_preference.user_id %>
+          </td>
+          <td>
+            <%= a_preference.pets %>
+          </td>
+          <td>
+            <%= a_preference.max_rent %>
+          </td>
+          <td>
+            <%= a_preference.person_type %>
+          </td>
+          <td>
+            <%= a_preference.laundry %>
+          </td>
+          <td>
+            <%= a_preference.doorman %>
+          </td>
+          <td>
+            <%= a_preference.roommate_num %>
+          </td>
+          <td>
+            <%= a_preference.smoker %>
+          </td>
+          <td>
+            <%= a_preference.bathroom_num %>
+          </td>
+          <td>
+            <%= a_preference.elevator %>
+          </td>
+          <td>
+            <%= a_preference.transportation %>
+          </td>
+          <td>
+            <%= a_preference.air_conditioner %>
+          </td>
+          <td>
+            <%= time_ago_in_words(a_preference.created_at) %> ago
+          </td>
+          <td>
+            <%= time_ago_in_words(a_preference.updated_at) %> ago
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<hr>

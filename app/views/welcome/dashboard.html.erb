@@ -1,0 +1,86 @@
+<div class="card border-dark mb-3" style="max-width: 100rem;">
+  <div class="alert alert-success"">
+    <h3 align="center" class="alert-heading">Welcome, <%= @current_user.first_name %>! </h3>
+  </div>
+  <div class="card-body">
+    <h4 align="center" class="card-title">Let's help you find a roommate ... </h4>
+  </div>
+</div>
+<!-- BREAK -->
+<form action="/insert_preference" method="post">
+  <div>
+    <label class="col-form-label mt-4" for="roommate_num">How many roommates are you looking for?</label>
+    <select class="custom-select" id="roommate_num" name="query_roommate_num">
+      <option selected>Choose...</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div>
+    <label class="col-form-label mt-4" for="bathroom_num">How many bathrooms should your apartment have?</label>
+    <select class="custom-select" id="bathroom_num" name="query_bathroom_num">
+      <option selected>Choose...</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div>
+    <label class="col-form-label mt-4" for="working-type">Are you looking for a morning person/night owl?</label>
+    <select class="custom-select" id="working-type" name="query_person_type">
+      <option selected>Choose...</option>
+      <option value="morning person">Morning person</option>
+      <option value="night owl">Night owl</option>
+    </select>
+  </div>
+  <div>
+    <label class="col-form-label mt-4" for="amenities">Which amenities should must your apartment include?</label>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="laundry_type" name = "query_laundry">
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="doorman_type" name="query_doorman">
+      <label class="form-check-label" for="doorman_type">Doorman</label>
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="elevator_type" name="query_elevator">
+      <label class="form-check-label" for="elevator_type">Elevator</label>
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="air_conditioner_type" name="query_air_conditioner">
+      <label class="form-check-label" for="air_conditioner_type">Air-conditioner</label>
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="pet_type" name = "query_pets">
+      <label class="form-check-label" for="pet_type">Pet-friendly</label>
+    </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="transportation_type" name="query_transportation">
+      <label class="form-check-label" for="transportation_type">Easy access to public transportation</label>
+    </div>
+  </div>
+  <div>
+    <label class="col-form-label mt-4" for="smoking-type">Are you comfortable with a roommate who smokes?</label>
+    <select class="custom-select" id="smoking-type" name="query_smoker">
+      <option selected>Choose...</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div>
+    <label class="form-label mt-4">What is the maximum per-person rent you are willing to pay?</label>
+    <div class="form-group">
+      <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <input type="text" class="form-control" name="query_max_rent" placeholder="e.g. 2,000" aria-label="Amount (to the nearest dollar)">
+        <span class="input-group-text">.00</span>
+      </div>
+      <button type="submit" class="btn btn-primary">Enter preferences </button>
+    </div>
+  </div>
+</form>

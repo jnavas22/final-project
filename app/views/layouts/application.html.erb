@@ -3,19 +3,56 @@
   <head>
     <title>FinalProject</title>
     <%= csrf_meta_tags %>
-
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
     <meta charset="utf-8">
-
     <!-- Make it responsive to small screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all' %>
-
+    <!-- Connect Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <!-- Connect Bootstrap JavaScript and its dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Connect Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <!-- Make it responsive to small screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
-
   <body>
+    <div class="alert alert-danger" role="alert"> 
+      <%= alert %>
+    </div> 
+    <div class="alert alert-warning" role="alert">
+      <%= notice %>
+    </div> 
+    <% if @current_user != nil %>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="/welcome">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_sign_out">Sign out</a>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="/"> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="/user_sign_in">Sign in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_sign_up">Sign up</a>
+        </li>
+      </ul>
+    <% end %>
     <%= yield %>
   </body>
+  <h5>© 2022 Copyright Josselyn Navas </h5>
 </html>

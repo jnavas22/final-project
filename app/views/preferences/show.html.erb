@@ -1,0 +1,236 @@
+<div>
+  <div>
+    <h1>
+      Preference #<%= @the_preference.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/preferences">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_preference/<%= @the_preference.id %>">
+          Delete preference
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_preference.user_id %>
+      </dd>
+
+      <dt>
+        Pets
+      </dt>
+      <dd>
+        <%= @the_preference.pets %>
+      </dd>
+
+      <dt>
+        Max rent
+      </dt>
+      <dd>
+        <%= @the_preference.max_rent %>
+      </dd>
+
+      <dt>
+        Person type
+      </dt>
+      <dd>
+        <%= @the_preference.person_type %>
+      </dd>
+
+      <dt>
+        Laundry
+      </dt>
+      <dd>
+        <%= @the_preference.laundry %>
+      </dd>
+
+      <dt>
+        Doorman
+      </dt>
+      <dd>
+        <%= @the_preference.doorman %>
+      </dd>
+
+      <dt>
+        Roommate num
+      </dt>
+      <dd>
+        <%= @the_preference.roommate_num %>
+      </dd>
+
+      <dt>
+        Smoker
+      </dt>
+      <dd>
+        <%= @the_preference.smoker %>
+      </dd>
+
+      <dt>
+        Bathroom num
+      </dt>
+      <dd>
+        <%= @the_preference.bathroom_num %>
+      </dd>
+
+      <dt>
+        Elevator
+      </dt>
+      <dd>
+        <%= @the_preference.elevator %>
+      </dd>
+
+      <dt>
+        Transportation
+      </dt>
+      <dd>
+        <%= @the_preference.transportation %>
+      </dd>
+
+      <dt>
+        Air conditioner
+      </dt>
+      <dd>
+        <%= @the_preference.air_conditioner %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_preference.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_preference.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit preference
+    </h2>
+
+    <form action="/modify_preference/<%= @the_preference.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_preference.user_id %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="pets_box" name="query_pets" value="1" <%= "checked" if @the_preference.pets %>>
+
+        <label for="pets_box">
+            Pets
+        </label>
+      </div>
+
+      <div>
+        <label for="max_rent_box">
+          Max rent
+        </label>
+
+        <input type="text" id="max_rent_box" name="query_max_rent" value="<%= @the_preference.max_rent %>">
+      </div>
+
+      <div>
+        <label for="person_type_box">
+          Person type
+        </label>
+
+        <input type="text" id="person_type_box" name="query_person_type" value="<%= @the_preference.person_type %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="laundry_box" name="query_laundry" value="1" <%= "checked" if @the_preference.laundry %>>
+
+        <label for="laundry_box">
+            Laundry
+        </label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="doorman_box" name="query_doorman" value="1" <%= "checked" if @the_preference.doorman %>>
+
+        <label for="doorman_box">
+            Doorman
+        </label>
+      </div>
+
+      <div>
+        <label for="roommate_num_box">
+          Roommate num
+        </label>
+
+        <input type="text" id="roommate_num_box" name="query_roommate_num" value="<%= @the_preference.roommate_num %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="smoker_box" name="query_smoker" value="1" <%= "checked" if @the_preference.smoker %>>
+
+        <label for="smoker_box">
+            Smoker
+        </label>
+      </div>
+
+      <div>
+        <label for="bathroom_num_box">
+          Bathroom num
+        </label>
+
+        <input type="text" id="bathroom_num_box" name="query_bathroom_num" value="<%= @the_preference.bathroom_num %>">
+      </div>
+
+      <div>
+        <input type="checkbox" id="elevator_box" name="query_elevator" value="1" <%= "checked" if @the_preference.elevator %>>
+
+        <label for="elevator_box">
+            Elevator
+        </label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="transportation_box" name="query_transportation" value="1" <%= "checked" if @the_preference.transportation %>>
+
+        <label for="transportation_box">
+            Transportation
+        </label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="air_conditioner_box" name="query_air_conditioner" value="1" <%= "checked" if @the_preference.air_conditioner %>>
+
+        <label for="air_conditioner_box">
+            Air conditioner
+        </label>
+      </div>
+
+      <button>
+        Update preference
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
