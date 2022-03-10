@@ -1,0 +1,60 @@
+These are all our members: You can filter based on your interests.
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          First Name
+        </th>
+
+        <th>
+          Last Name
+        </th>
+
+        <th>
+          Current City
+        </th>
+
+        <th>
+          Destination City
+        </th>
+      </tr>
+
+      <% @list_of_members.each do |a_member| %>
+      <tr>
+        <td>
+          <%= a_member.id %>
+        </td>
+
+        <td>
+          <%= a_member.first_name %>
+        </td>
+
+        <td>
+          <%= a_member.last_name %>
+        </td>
+
+        <td>
+          <%= a_member.from_city %>
+        </td>
+
+        <td>
+          <%= a_member.to_city %>
+        </td>
+        <td>
+          <a href="/preferences/<%= a_member.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+

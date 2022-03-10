@@ -67,4 +67,7 @@ Rails.application.routes.draw do
              
   #------------------------------
   get("/welcome", { :controller => "user_authentication", :action => "dashboard" })
+
+  # MEMBERS DATABASE
+  get("/members_list", { :controller => "members", :action => "index"})
 end

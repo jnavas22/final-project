@@ -51,7 +51,7 @@ class PreferencesController < ApplicationController
     the_preference.laundry = params.fetch("query_laundry", false)
     the_preference.doorman = params.fetch("query_doorman", false)
     the_preference.roommate_num = params.fetch("query_roommate_num")
-    the_preference.smoker = params.fetch("query_smoker", false)
+    the_preference.smoker = params.fetch("query_smoker")
     the_preference.bathroom_num = params.fetch("query_bathroom_num")
     the_preference.elevator = params.fetch("query_elevator", false)
     the_preference.transportation = params.fetch("query_transportation", false)
