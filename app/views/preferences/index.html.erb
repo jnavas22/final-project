@@ -63,17 +63,18 @@
     </h2>
     <form action="/modify_preference/:path_id" method="post">
       <div>
-        <label class="col-form-label mt-4" for="roommate_num">How many roommates are you looking for?</label>
+        <label class="col-form-label mt-4" for="roommate_num">Which form answer would you like to update?</label>
         <select class="custom-select" id="roommate_num" name="query_roommate_num">
           <option selected>Choose...</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option>Number of roommates</option>
+          <option>Number of bathrooms</option>
+          <option>Person Type</option>
+          <option>OK with roommate who smokes</option>
+          <option>Max Rent</option>
+          <option>Amenities</option>
         </select>
       </div>
-      <div>
+      <!-- <div>
         <label class="col-form-label mt-4" for="bathroom_num">How many bathrooms should your apartment have?</label>
         <select class="custom-select" id="bathroom_num" name="query_bathroom_num">
           <option selected>Choose...</option>
@@ -139,7 +140,7 @@
       </div>
     </form>
   </div>
-</div>
+</div> 
 <hr>
 <h3> Preference History </h3>
 <div>
@@ -194,7 +195,9 @@
         <th>
         </th>
       </tr>
-      <% @list_of_preferences.each do |a_preference| %>
+
+
+      <!-- <% @list_of_preferences.each do |a_preference| %>
         <tr>
           <td>
             <%= a_preference.id %>
@@ -246,4 +249,4 @@
     </table>
   </div>
 </div>
-<hr>
+<hr> -->

@@ -21,25 +21,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <body>
-    <div class="alert alert-danger" role="alert"> 
+    <div class="alert alert-danger" role="alert">
       <%= alert %>
-    </div> 
+    </div>
     <div class="alert alert-warning" role="alert">
       <%= notice %>
-    </div> 
-    <% if @current_user != nil %>
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" data-bs-toggle="tab" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="tab" href="/welcome">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/user_sign_out">Sign out</a>
-        </li>
-      </ul>
-    <% else %>
+    </div>
+    <% if @current_user == nil %>
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link active" data-bs-toggle="tab" href="/"> Home</a>
@@ -49,6 +37,27 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/user_sign_up">Sign up</a>
+        </li>
+      </ul>
+    <% elsif @current_user != nil && @the_preference == nil %>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="/preferences">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_sign_out">Sign out</a>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="/dashboard">In-take Form</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_sign_out">Sign out</a>
         </li>
       </ul>
     <% end %>
