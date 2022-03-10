@@ -1,23 +1,20 @@
 <div>
   <div>
     <h1>
-      Preference #<%= @the_preference.id %> details
+       <%= User.all.where({ :id => @the_preference.user_id}).at(0).first_name %>'s Details
     </h1>
-
     <div>
       <div>
-        <a href="/preferences">
-          Go back
+        <a href="/members_list">
+          <button>Go back</button>
         </a>
       </div>
-
-      <div>
+      <!--<div>
         <a href="/delete_preference/<%= @the_preference.id %>">
           Delete preference
         </a>
-      </div>
+      </div>-->
     </div>
-
     <dl>
       <dt>
         User
@@ -25,91 +22,79 @@
       <dd>
         <%= @the_preference.user_id %>
       </dd>
-
       <dt>
-        Pets
+        Profile picture
+      </dt>
+      <dd>
+      <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 20%;">
+      </dd>
+      <dt>
+        Pet-friendly
       </dt>
       <dd>
         <%= @the_preference.pets %>
       </dd>
-
       <dt>
-        Max rent
+        Maximum per-person rent 
       </dt>
       <dd>
         <%= @the_preference.max_rent %>
       </dd>
-
+  
       <dt>
-        Person type
-      </dt>
-      <dd>
-        <%= @the_preference.person_type %>
-      </dd>
-
-      <dt>
-        Laundry
-      </dt>
-      <dd>
-        <%= @the_preference.laundry %>
-      </dd>
-
-      <dt>
-        Doorman
-      </dt>
-      <dd>
-        <%= @the_preference.doorman %>
-      </dd>
-
-      <dt>
-        Roommate num
+        Looking for this Number of Roommates
       </dt>
       <dd>
         <%= @the_preference.roommate_num %>
       </dd>
-
       <dt>
-        Smoker
-      </dt>
-      <dd>
-        <%= @the_preference.smoker %>
-      </dd>
-
-      <dt>
-        Bathroom num
+        Looking for this Number of bathrooms
       </dt>
       <dd>
         <%= @the_preference.bathroom_num %>
       </dd>
-
       <dt>
-        Elevator
+        Looking for this type of person
+      </dt>
+      <dd>
+        <%= @the_preference.person_type %>
+      </dd>
+      <dt>
+        Needs in-unit laundry:
+      </dt>
+      <dd>
+        <%= @the_preference.laundry %>
+      </dd>
+      <dt>
+        Needs a doorman
+      </dt>
+      <dd>
+        <%= @the_preference.doorman %>
+      </dd>
+      <dt>
+        Needs an elevator
       </dt>
       <dd>
         <%= @the_preference.elevator %>
       </dd>
-
       <dt>
-        Transportation
+        Needs to be near public transportation
       </dt>
       <dd>
         <%= @the_preference.transportation %>
       </dd>
-
       <dt>
-        Air conditioner
+        Needs air conditioner
       </dt>
       <dd>
         <%= @the_preference.air_conditioner %>
       </dd>
-
       <dt>
         Created at
       </dt>
       <dd>
         <%= time_ago_in_words(@the_preference.created_at) %> ago
       </dd>
-
       <dt>
         Updated at
       </dt>
@@ -119,11 +104,8 @@
     </dl>
   </div>
 </div>
-
 <hr>
-
-
-<div>
+<!--<div>
   <div>
     <h2>
       Edit preference
@@ -231,6 +213,5 @@
       </button>
     </form>
   </div>
-</div>
-
+</div>-->
 <hr>

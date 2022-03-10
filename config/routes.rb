@@ -68,6 +68,10 @@ Rails.application.routes.draw do
   #------------------------------
   get("/welcome", { :controller => "user_authentication", :action => "dashboard" })
 
-  # MEMBERS DATABASE
+  # Routes for the Member resource:
+
+  #READ
   get("/members_list", { :controller => "members", :action => "index"})
+  get("/members_list/:path_id", { :controller => "members", :action => "show"})
+  
 end

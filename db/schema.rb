@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_09_174622) do
+ActiveRecord::Schema.define(version: 2022_03_10_202245) do
 
   create_table "preferences", force: :cascade do |t|
     t.integer "user_id"
@@ -20,13 +20,14 @@ ActiveRecord::Schema.define(version: 2022_03_09_174622) do
     t.boolean "laundry"
     t.boolean "doorman"
     t.integer "roommate_num"
-    t.boolean "smoker"
     t.integer "bathroom_num"
     t.boolean "elevator"
     t.boolean "transportation"
     t.boolean "air_conditioner"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "picture"
+    t.integer "clean"
   end
 
   create_table "roommate_requests", force: :cascade do |t|

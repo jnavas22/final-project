@@ -1,0 +1,88 @@
+<div>
+  <div>
+    <h1>
+      <%= User.all.where({ :id => @the_preference.user_id}).at(0).first_name %>'s Details
+    </h1>
+    <div>
+      <dl>
+        <dt>
+          Profile picture
+        </dt>
+        <dd>
+          <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 20%;">
+        </dd>
+        <dt>
+          Pet-friendly
+        </dt>
+        <dd>
+          <%= @the_preference.pets %>
+        </dd>
+        <dt>
+          Maximum per-person rent 
+        </dt>
+        <dd>
+          <%= @the_preference.max_rent %>
+        </dd>
+        <dt>
+          Looking for this Number of Roommates
+        </dt>
+        <dd>
+          <%= @the_preference.roommate_num %>
+        </dd>
+        <dt>
+          Looking for this Number of bathrooms
+        </dt>
+        <dd>
+          <%= @the_preference.bathroom_num %>
+        </dd>
+        <dt>
+          Looking for this type of person
+        </dt>
+        <dd>
+          <%= @the_preference.person_type %>
+        </dd>
+        <dt>
+          Needs in-unit laundry:
+        </dt>
+        <dd>
+          <%= @the_preference.laundry %>
+        </dd>
+        <dt>
+          Needs a doorman
+        </dt>
+        <dd>
+          <%= @the_preference.doorman %>
+        </dd>
+        <dt>
+          Needs an elevator
+        </dt>
+        <dd>
+          <%= @the_preference.elevator %>
+        </dd>
+        <dt>
+          Needs to be near public transportation
+        </dt>
+        <dd>
+          <%= @the_preference.transportation %>
+        </dd>
+        <dt>
+          Needs air conditioner
+        </dt>
+        <dd>
+          <%= @the_preference.air_conditioner %>
+        </dd>
+        <dt>
+          Last Active:
+        </dt>
+        <dd>
+          <%= time_ago_in_words(@the_preference.updated_at) %> ago
+        </dd>
+      </dl>
+    </div>
+    <div>
+      <a href="/members_list">
+        <button>Go back</button>
+      </a>
+    </div>
+  </div>
+  <hr>

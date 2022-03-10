@@ -7,7 +7,28 @@
   </div>
 </div>
 <!-- BREAK -->
-<form action="/insert_preference" method="post">
+<h5> First, tell us more about yourself</h5>
+<br>
+<form action="/insert_preference" method="post" class="form-horizontal" enctype="multipart/form-data">
+  <div>
+    <label id="picture">Share a fun picture of yourself:</label>
+    <input type="file" id="picture" name="query_picture" class="form-control">
+  </div>
+  <br>
+  <div>
+    <label id="custom_range" class="form-label">On a scale of 1-10, how clean would you rate yourself to be:</label>
+    <input type="range" class="form-range" min="0" max="10" step="1" id="custom_range" name="query_clean">
+  </div>
+    <div>
+    <label class="col-form-label mt-4" for="working-type">Are you looking for a morning person/night owl?</label>
+    <select class="custom-select" id="working-type" name="query_person_type">
+      <option selected>Choose...</option>
+      <option value="morning person">Morning person</option>
+      <option value="night owl">Night owl</option>
+    </select>
+  </div>
+  <br>
+  <h5> Second, tell us more about what you're looking for</h5>
   <div>
     <label class="col-form-label mt-4" for="roommate_num">How many roommates are you looking for?</label>
     <select class="custom-select" id="roommate_num" name="query_roommate_num">
@@ -28,14 +49,6 @@
       <option value="3">3</option>
       <option value="4">4</option>
       <option value="5">5</option>
-    </select>
-  </div>
-  <div>
-    <label class="col-form-label mt-4" for="working-type">Are you looking for <%  %>a morning person/night owl?</label>
-    <select class="custom-select" id="working-type" name="query_person_type">
-      <option selected>Choose...</option>
-      <option value="morning person">Morning person</option>
-      <option value="night owl">Night owl</option>
     </select>
   </div>
   <div>
@@ -65,19 +78,11 @@
     </div>
   </div>
   <div>
-    <label class="col-form-label mt-4" for="smoking-type">Are you comfortable with a roommate who smokes?</label>
-    <select class="custom-select" id="smoking-type" name="query_smoker">
-      <option selected>Choose...</option>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
-  </div>
-  <div>
     <label class="form-label mt-4">What is the maximum per-person rent you are willing to pay?</label>
     <div class="form-group">
       <div class="input-group mb-3">
         <span class="input-group-text">$</span>
-        <input type="text" class="form-control" name="query_max_rent" placeholder="e.g. 2,000" aria-label="Amount (to the nearest dollar)">
+        <input type="number" class="form-control" name="query_max_rent" placeholder="e.g. 1600" aria-label="Amount (to the nearest dollar)">
         <span class="input-group-text">.00</span>
       </div>
       <button type="submit" class="btn btn-primary">Enter preferences </button>

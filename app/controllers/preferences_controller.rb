@@ -21,16 +21,17 @@ class PreferencesController < ApplicationController
     @the_preference = Preference.new
     @the_preference.user_id = @current_user.id
     @the_preference.pets = params.fetch("query_pets", false)
-    @the_preference.max_rent = params.fetch("query_max_rent")
+    @the_preference.max_rent = params.fetch("query_max_rent").to_i
     @the_preference.person_type = params.fetch("query_person_type")
     @the_preference.laundry = params.fetch("query_laundry", false)
     @the_preference.doorman = params.fetch("query_doorman", false)
     @the_preference.roommate_num = params.fetch("query_roommate_num")
-    @the_preference.smoker = params.fetch("query_smoker", false)
     @the_preference.bathroom_num = params.fetch("query_bathroom_num")
     @the_preference.elevator = params.fetch("query_elevator", false)
     @the_preference.transportation = params.fetch("query_transportation", false)
     @the_preference.air_conditioner = params.fetch("query_air_conditioner", false)
+    @the_preference.picture = params.fetch("query_picture")
+    @the_preference.clean = params.fetch("query_clean")
 
     if @the_preference.valid?
       @the_preference.save

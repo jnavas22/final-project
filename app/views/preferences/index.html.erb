@@ -1,7 +1,8 @@
+<% @my_preferences = Preference.all.where({ :user_id => @current_user.id}).order({ :created_at => :desc}).at(0) %>
 <div>
   <div>
     <h1>
-      <%= @current_user.first_name %>'s Current Preferences:
+      <%= @current_user.first_name%>'s Current Preferences:
     </h1>
   </div>
 </div>
@@ -14,48 +15,53 @@
   </thead>
   <tbody>
     <tr>
+      <th scope="row">Personal Image</th>
+      <td><img src="<%= @my_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Cleanliness</th>
+      <td><%= @my_preferences.roommate_num%></td>
+    </tr>
+    <tr>
       <th scope="row">Number of roommates</th>
-      <td><%= @list_of_preferences.at(0).roommate_num%></td>
+      <td><%= @my_preferences.roommate_num%></td>
     </tr>
     <tr>
       <th scope="row">Number of bathrooms</th>
-      <td><%= @list_of_preferences.at(0).bathroom_num%></td>
+      <td><%= @my_preferences.bathroom_num%></td>
     </tr>
     <tr>
       <th scope="row">Person Type</th>
-      <td><%= @list_of_preferences.at(0).person_type%></td>
-    </tr>
-    <tr>
-      <th scope="row">OK with roommate who smokes</th>
-      <td><%= @list_of_preferences.at(0).smoker %></td>
+      <td><%= @my_preferences.person_type%></td>
     </tr>
     <tr>
       <th scope="row">Max Rent</th>
-      <td>$<%= @list_of_preferences.at(0).max_rent%></td>
+      <td>$<%= @my_preferences.max_rent%></td>
     </tr>
     <tr>
       <th scope="row">Elevator</th>
-      <td><%= @list_of_preferences.at(0).elevator%></td>
+      <td><%= @my_preferences.elevator%></td>
     </tr>
     <tr>
       <th scope="row">Doorman</th>
-      <td><%= @list_of_preferences.at(0).doorman%></td>
+      <td><%= @my_preferences.doorman%></td>
     </tr>
     <tr>
       <th scope="row">Pet-friendly</th>
-      <td><%= @list_of_preferences.at(0).pets%></td>
+      <td><%= @my_preferences.pets%></td>
     </tr>
     <tr>
       <th scope="row">Close to public transportation</th>
-      <td><%= @list_of_preferences.at(0).transportation%></td>
+      <td><%= @my_preferences.transportation%></td>
     </tr>
     <tr>
       <th scope="row">Air conditioner</th>
-      <td><%= @list_of_preferences.at(0).air_conditioner%></td>
+      <td><%= @my_preferences.air_conditioner%></td>
     </tr>
   </tbody>
 </table>
-<a href="/members_list"><button type="submit" class="btn btn-primary"> Let's continue </button></a>
+<a href="/members_list"><button type="submit" class="btn btn-primary"> Let's continue </button></a> 
 <hr>
 <div>
   <div>
@@ -70,7 +76,6 @@
           <option>Number of roommates</option>
           <option>Number of bathrooms</option>
           <option>Person Type</option>
-          <option>OK with roommate who smokes</option>
           <option>Max Rent</option>
           <option>Amenities</option>
         </select>
@@ -197,57 +202,3 @@
         </th>
       </tr>
 
-
-      <!-- <% @list_of_preferences.each do |a_preference| %>
-        <tr>
-          <td>
-            <%= a_preference.id %>
-          </td>
-          <td>
-            <%= a_preference.user_id %>
-          </td>
-          <td>
-            <%= a_preference.pets %>
-          </td>
-          <td>
-            <%= a_preference.max_rent %>
-          </td>
-          <td>
-            <%= a_preference.person_type %>
-          </td>
-          <td>
-            <%= a_preference.laundry %>
-          </td>
-          <td>
-            <%= a_preference.doorman %>
-          </td>
-          <td>
-            <%= a_preference.roommate_num %>
-          </td>
-          <td>
-            <%= a_preference.smoker %>
-          </td>
-          <td>
-            <%= a_preference.bathroom_num %>
-          </td>
-          <td>
-            <%= a_preference.elevator %>
-          </td>
-          <td>
-            <%= a_preference.transportation %>
-          </td>
-          <td>
-            <%= a_preference.air_conditioner %>
-          </td>
-          <td>
-            <%= time_ago_in_words(a_preference.created_at) %> ago
-          </td>
-          <td>
-            <%= time_ago_in_words(a_preference.updated_at) %> ago
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-<hr> -->
