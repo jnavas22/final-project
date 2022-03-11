@@ -74,5 +74,7 @@ Rails.application.routes.draw do
   get("/members", { :controller => "members", :action => "another_index"})
   get("/members_list", { :controller => "members", :action => "index"})
   get("/members_list/:path_id", { :controller => "members", :action => "show"})
+
+
   
 end

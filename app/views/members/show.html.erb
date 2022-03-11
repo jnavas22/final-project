@@ -22,6 +22,13 @@ table.center {
 <body>
 
 <% @this_user = User.all.where({ :id => @the_preference.user_id}).at(0) %>
+<div class="d-grid gap-2" align="center">
+<form action="/insert_roommate_request" method="post">
+  <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
+  <input type="hidden" name="query_recipient_id" value="<%= @this_user.id %>"></input>
+  <button class="btn btn-lg btn-outline-success" type="submit">Add to Preferred Roommates</button></a>
+</form>
+</div> 
 <table border="1" style="width:50%" class="center">
   <th  style="text-align:center">
   <br>
@@ -123,7 +130,7 @@ table.center {
   </tr>
 </table>
 <br>
-<div class="d-grid gap-2" align="center">
-  <a href="/add_roommate"><button class="btn btn-lg btn-outline-primary" type="button">Add to Preferred Roommates</button></a>
+
+<div align="center"><a href="/members_list">Go back <a></div>
 </body>
 </html>

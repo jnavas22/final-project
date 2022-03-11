@@ -49,6 +49,7 @@ class UserAuthenticationController < ApplicationController
     @user.to_city = params.fetch("query_to_city")
     @user.gender = params.fetch("query_gender")
     @user.university = params.fetch("query_university")
+    @user.movedate = params.fetch("query_movedate")
     @user.first_name = params.fetch("query_first_name")
     @user.last_name = params.fetch("query_last_name")
 

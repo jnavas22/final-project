@@ -8,6 +8,7 @@
 #  from_city       :string
 #  gender          :string
 #  last_name       :string
+#  movedate        :date
 #  password_digest :string
 #  to_city         :string
 #  university      :string

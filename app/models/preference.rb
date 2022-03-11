@@ -8,6 +8,7 @@
 #  clean           :integer
 #  doorman         :boolean
 #  elevator        :boolean
+#  industry        :string
 #  laundry         :boolean
 #  max_rent        :integer
 #  person_type     :string

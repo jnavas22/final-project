@@ -22,6 +22,9 @@ These are all our members: You can filter based on your interests.
         <th>
           Destination City
         </th>
+              <th>
+          Move-in Date
+        </th>
         <th>
           More info
         </th>
@@ -45,6 +48,9 @@ These are all our members: You can filter based on your interests.
           </td>
           <td>
             <%= a_member.to_city %>
+          </td>
+          <td>
+            <%= a_member.movedate %>
           </td>
           <td>
             <a href="/members_list/<%= a_member.id %>">

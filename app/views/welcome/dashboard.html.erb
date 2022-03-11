@@ -1,122 +1,140 @@
 <html>
-<head>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/bootstrap.css">
-<style>
-body, html {height: 100%}
-.bgimg {
-  background-image: url('https://vastphotos.com/files/uploads/photos/10588/chicago-skyline-photo-l.jpg');
-  min-height: 100%;
-  background-position: center;
-  background-size: cover;
-}
-table.center {
-    margin-left:auto; 
-    margin-right:auto;
-  }
-
-</style>
-</head>
-<body>
-<form  action="/insert_preference" method="post" class="form-horizontal" enctype="multipart/form-data">
-<table border="0" style="width:50%" class="center">
-  <th>
-    <div class="jumbotron">
-    <h1 class="display-4">Welcome, <%= @current_user.first_name %>!</h1>
-    <p class="lead">Let's get started on finding you a roommate for your new adventure in <%= @current_user.to_city %> </p>
-    <hr class="my-4">
-    </div>
-   <div class="alert alert-success"">
-      <h4 align="center" class="alert-heading">First, tell us more about yourself </h4>
-    </div>
-    <br>
-    <div>
-    <label id="picture">Share a fun picture of yourself</label>
-    <input type="file" id="picture" name="query_picture" class="form-control">
-  </div>
-  <br>
-  <br>
-  <div>
-    <label id="custom_range" class="form-label">On a scale of 1-10, how clean would you rate yourself to be:</label>
-    <input type="range" class="form-range" min="0" max="10" step="1" id="custom_range" name="query_clean">
-  </div>
-    <div>
-    <label class="col-form-label mt-4" for="working-type">Are you a morning person/night owl?</label>
-    <select class="custom-select" id="working-type" name="query_person_type">
-      <option selected>Choose...</option>
-      <option value="morning person">Morning person</option>
-      <option value="night owl">Night owl</option>
-    </select>
-  </div>
-  <br>
-     <div class="alert alert-success"">
-      <h4 align="center" class="alert-heading">Next, tell us more about what you're looking for</h4>
-    </div>
-    <div>
-    <label class="col-form-label mt-4" for="roommate_num">How many roommates are you looking for?</label>
-    <select class="custom-select" id="roommate_num" name="query_roommate_num">
-      <option selected>Choose...</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-  </div>
-  <div>
-    <label class="col-form-label mt-4" for="bathroom_num">How many bathrooms should your apartment have?</label>
-    <select class="custom-select" id="bathroom_num" name="query_bathroom_num">
-      <option selected>Choose...</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-  </div>
-  <div>
-    <label class="col-form-label mt-4" for="amenities">Which amenities should must your apartment include?</label>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="laundry_type" name = "query_laundry">
-      <label class="form-check-label" for="laundry_type">In-unit laundry</label>
-    </div>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="doorman_type" name="query_doorman">
-      <label class="form-check-label" for="doorman_type">Doorman</label>
-    </div>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="elevator_type" name="query_elevator">
-      <label class="form-check-label" for="elevator_type">Elevator</label>
-    </div>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="air_conditioner_type" name="query_air_conditioner">
-      <label class="form-check-label" for="air_conditioner_type">Air-conditioner</label>
-    </div>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="pet_type" name = "query_pets">
-      <label class="form-check-label" for="pet_type">Pet-friendly</label>
-    </div>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="transportation_type" name="query_transportation">
-      <label class="form-check-label" for="transportation_type">Easy access to public transportation</label>
-    </div>
-  </div>
-  <div>
-    <label class="form-label mt-4">What is the maximum per-person rent you are willing to pay?</label>
-    <div class="form-group">
-      <div class="input-group mb-3">
-        <span class="input-group-text">$</span>
-        <input type="number" class="form-control" name="query_max_rent" placeholder="e.g. 1600" aria-label="Amount (to the nearest dollar)">
-        <span class="input-group-text">.00</span>
-      </div>
-  </th>
-</table>
-<button type="submit" class="btn btn-primary">Enter preferences </button>
-</form>
-<!-- BREAK -->
-<!--<h5> First, tell us more about yourself</h5>
+  <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <style>
+      body, html {height: 100%}
+      .bgimg {
+        background-image: url('https://vastphotos.com/files/uploads/photos/10588/chicago-skyline-photo-l.jpg');
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+      }
+      table.center {
+          margin-left:auto;
+          margin-right:auto;
+        }
+    </style>
+  </head>
+  <body>
+    <form  action="/insert_preference" method="post" class="form-horizontal" enctype="multipart/form-data">
+      <table border="0" style="width:50%" class="center">
+        <th>
+          <div class="jumbotron">
+            <h1 class="display-4">Welcome, <%= @current_user.first_name %>!</h1>
+            <p class="lead">Let's get started on finding you a roommate for your new adventure in <%= @current_user.to_city %> </p>
+            <hr class="my-4">
+          </div>
+          <div class="alert alert-success"">
+            <h4 align="center" class="alert-heading">First, tell us more about yourself </h4>
+          </div>
+          <br>
+          <div>
+            <label id="picture">Share a fun picture of yourself</label>
+            <input type="file" id="picture" name="query_picture" class="form-control">
+          </div>
+          <br>
+          <div>
+            <label id="custom_range" class="form-label">On a scale of 1-10, how clean would you rate yourself to be:</label>
+            <input type="range" class="form-range" min="0" max="10" step="1" id="custom_range" name="query_clean">
+          </div>
+          <div>
+            <label class="col-form-label mt-4" for="working-type">Are you a morning person/night owl?</label>
+            <select class="custom-select" id="working-type" name="query_person_type">
+              <option selected>Choose...</option>
+              <option value="morning person">Morning person</option>
+              <option value="night owl">Night owl</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            <label id="industry_box" class="form-label">What are your post-graduation plans?</label>
+            <select class="custom-select" id="industry_box" name="query_industry">
+              <option selected>Choose...</option>
+              <option value="1">Medical School</option>
+              <option value="1">Law School</option>
+              <option value="1">Business School</option>
+              <option value="1">Other Graduate Program</option>
+              <option value="2">Financial Services</option>
+              <option value="2">Engineering</option>
+              <option value="3">Research</option>
+              <option value="4">Consulting</option>
+              <option value="5">Healthcare & Medical</option>
+              <option value="5">Government & Defense</option>
+              <option value="4">Education & Training</option>
+              <option value="5">Sports & Recreation</option>
+              <option value="5">Other</option>
+            </select>
+          </div>
+          <br>
+          <div class="alert alert-success"">
+            <h4 align="center" class="alert-heading">Next, tell us more about what you're looking for</h4>
+          </div>
+          <div>
+            <label class="col-form-label mt-4" for="roommate_num">How many roommates are you looking for?</label>
+            <select class="custom-select" id="roommate_num" name="query_roommate_num">
+              <option selected>Choose...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div>
+            <label class="col-form-label mt-4" for="bathroom_num">How many bathrooms should your apartment have?</label>
+            <select class="custom-select" id="bathroom_num" name="query_bathroom_num">
+              <option selected>Choose...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div>
+            <label class="col-form-label mt-4" for="amenities">Which amenities should must your apartment include?</label>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="laundry_type" name = "query_laundry">
+              <label class="form-check-label" for="laundry_type">In-unit laundry</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="doorman_type" name="query_doorman">
+              <label class="form-check-label" for="doorman_type">Doorman</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="elevator_type" name="query_elevator">
+              <label class="form-check-label" for="elevator_type">Elevator</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="air_conditioner_type" name="query_air_conditioner">
+              <label class="form-check-label" for="air_conditioner_type">Air-conditioner</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="pet_type" name = "query_pets">
+              <label class="form-check-label" for="pet_type">Pet-friendly</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="transportation_type" name="query_transportation">
+              <label class="form-check-label" for="transportation_type">Easy access to public transportation</label>
+            </div>
+          </div>
+          <div>
+            <label class="form-label mt-4">What is the maximum per-person rent you are willing to pay?</label>
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" name="query_max_rent" placeholder="e.g. 1600" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">.00</span>
+              </div>
+            </th>
+          </table>
+          <button type="submit" class="btn btn-primary">Enter preferences </button>
+        </form>
+        <!-- BREAK -->
+        <!--<h5> First, tell us more about yourself</h5>
 <br>
 <form action="/insert_preference" method="post" class="form-horizontal" enctype="multipart/form-data">
   <div>
@@ -198,5 +216,5 @@ table.center {
     </div>
   </div>
 </form>-->
-</body>
-<html>
+      </body>
+      <html>
