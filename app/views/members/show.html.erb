@@ -1,88 +1,131 @@
-<div>
-  <div>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('https://vastphotos.com/files/uploads/photos/10588/chicago-skyline-photo-l.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+</style>
+</head>
+<body>
+
+<% @this_user = User.all.where({ :id => @the_preference.user_id}).at(0) %>
+<table border="1" style="width:50%" class="center">
+  <th  style="text-align:center">
     <h1>
-      <%= User.all.where({ :id => @the_preference.user_id}).at(0).first_name %>'s Details
+      <%= @this_user.first_name %>'s Details
     </h1>
-    <div>
-      <dl>
+  </th>
+  <tr style="text-align:center">
+    <td>
+      <div>
         <dt>
           Profile picture
         </dt>
         <dd>
-          <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 20%;">
+          <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 50%;">
         </dd>
+      </div>
+    </td>
+  </tr>
+  <tr style="text-align:center">
+    <td>
+      <div>
         <dt>
-          Pet-friendly
-        </dt>
-        <dd>
-          <%= @the_preference.pets %>
-        </dd>
-        <dt>
-          Maximum per-person rent 
-        </dt>
-        <dd>
-          <%= @the_preference.max_rent %>
-        </dd>
-        <dt>
-          Looking for this Number of Roommates
-        </dt>
-        <dd>
-          <%= @the_preference.roommate_num %>
-        </dd>
-        <dt>
-          Looking for this Number of bathrooms
-        </dt>
-        <dd>
-          <%= @the_preference.bathroom_num %>
-        </dd>
-        <dt>
-          Looking for this type of person
+          I am a
         </dt>
         <dd>
           <%= @the_preference.person_type %>
         </dd>
+      </div>
+    </td>
+  </tr>
+  <tr style="text-align:center">
+    <td>
+      <div>
         <dt>
-          Needs in-unit laundry:
+          Maximum per person rent I'm willing to pay
         </dt>
         <dd>
-          <%= @the_preference.laundry %>
+          $<%= @the_preference.max_rent %>
         </dd>
+      </div>
+    </td>
+  </tr>
+  <tr style="text-align:center">
+    <td>
+      <div>
         <dt>
-          Needs a doorman
+          Looking for this number of roommates
         </dt>
         <dd>
-          <%= @the_preference.doorman %>
+          <%= @the_preference.roommate_num %>
         </dd>
+      </div>
+    </td>
+  </tr>
+  <tr style="text-align:center">
+    <td>
+      <div>
         <dt>
-          Needs an elevator
+          Looking for this number of bathrooms
         </dt>
         <dd>
-          <%= @the_preference.elevator %>
+          <%= @the_preference.bathroom_num %>
         </dd>
+      </div>
+    </td>
+  </tr>
+  <tr style="text-align:center">
+    <td>
+      <div>
         <dt>
-          Needs to be near public transportation
+          Looking for the following amenities
         </dt>
         <dd>
-          <%= @the_preference.transportation %>
+            <% @user_preference = Preference.all.where({ :user_id => @this_user.id }).where({ :id => @the_preference.id}).at(0) %>
+
+            <% if @user_preference.elevator %>
+              <span class="badge rounded-pill bg-warning"> Elevator </span>
+            <% end %>
+            <% if @user_preference.doorman %>
+              <span class="badge rounded-pill bg-warning">Doorman</span>
+            <% end %>
+            <% if @user_preference.laundry %>
+              <span class="badge rounded-pill bg-warning">In-unit laundry </span>
+            <% end %>
+            <% if @user_preference.air_conditioner%>
+              <span class="badge rounded-pill bg-warning">Air-conditioner</span>
+            <% end %>
+            <% if @user_preference.transportation %>
+              <span class="badge rounded-pill bg-warning">Close to public transportation</span>
+            <%end %>
+            <% if @user_preference.pets %>
+              <span class="badge rounded-pill bg-warning">Pet-friendly</span>
+            <%end %>
         </dd>
-        <dt>
-          Needs air conditioner
-        </dt>
-        <dd>
-          <%= @the_preference.air_conditioner %>
-        </dd>
-        <dt>
-          Last Active:
-        </dt>
-        <dd>
-          <%= time_ago_in_words(@the_preference.updated_at) %> ago
-        </dd>
-      </dl>
-    </div>
-    <div>
-      <a href="/members_list">
-        <button>Go back</button>
-      </a>
-    </div>
-  </div>
-  <hr>
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+<div align="center">
+  <a href="/add_roommate">
+    <button>Go back</button>
+  </a>
+</div>
+</body>
+</html>

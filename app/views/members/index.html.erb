@@ -2,12 +2,12 @@ These are all our members: You can filter based on your interests.
 <hr>
 <div>
   <div>
-    <table border="1">
-      <tr>
-        <th>
+    <table class = "table table-hover" border="1" style="width:100%">
+      <tr class="table-warning">
+        <th >
           First Name
         </th>
-        <th>
+        <th >
           Last Name
         </th>
         <th>
@@ -21,6 +21,9 @@ These are all our members: You can filter based on your interests.
         </th>
         <th>
           Destination City
+        </th>
+        <th>
+          More info
         </th>
       </tr>
       <% @list_of_members.each do |a_member| %>

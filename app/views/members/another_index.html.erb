@@ -1,0 +1,13 @@
+<%= search_form_for @q do |f| %>
+  <p>Narrow results:</p>
+  <div>
+    <%= f.label :gender_eq, "Gender is" %>
+    <%= f.text_field :gender_eq, :placeholder => "Enter a few characters" %>
+  </div>
+  <div>
+    <%= f.label :to_city_eq, "Destination city is" %>
+    <%= f.text_field :to_city_eq, :placeholder => "Enter a few characters" %>
+  </div>
+  <%= f.submit :class => "btn btn-primary btn-block" %>
+  <a href="/members_list">Clear filters</a>
+<% end %>
