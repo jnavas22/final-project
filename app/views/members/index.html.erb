@@ -30,6 +30,7 @@ These are all our members: You can filter based on your interests.
         </th>
       </tr>
       <% @list_of_members.each do |a_member| %>
+        <% if a_member.id != @current_user.id %>
         <tr>
           <td>
             <%= a_member.first_name %>
@@ -58,6 +59,7 @@ These are all our members: You can filter based on your interests.
             </a>
           </td>
         </tr>
+        <% end %>
       <% end %>
     </table>
   </div>
