@@ -1,13 +1,62 @@
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/bootstrap.css">
+<style>
+body, html {height: 100%}
+
+.bgimg {
+  background-image: url('https://vastphotos.com/files/uploads/photos/10588/chicago-skyline-photo-l.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+</style>
+</head>
+<body>
 <br>
 <h1 align = "center">Sign in</h1>
 <hr>
 <form align="center" action="/user_verify_credentials" method="post">
+    <table style="width:50%" class="center" border-spacing="15px">
+      <div class="form-group row">
+        <tr>
+          <td><label for="email_box" class="col-form-label">Email</label>
+          </td>
+            <td>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" name="query_email" id="email_box" placeholder="Enter your email ...">
+              </div>
+            </td>
+        </tr>
+        <tr>
+          <td><label for="password_box" class="col-form-label">Password</label></td>
+            <td>
+              <div class="col-sm-10">
+                  <input type="password" class="form-control" name="query_password" id="password_box" placeholder="Enter your password...">
+              </div>
+            </td>
+        </tr>
+      </div>
+    </table>
+  <br>
+     <button type="submit" class="btn btn-primary">Sign in </button>
+</form>
+<!--<form align="center" action="/user_verify_credentials" method="post">
   <div class="form-group row">
     <label for="email_box" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="query_email" id="email_box" placeholder="email@example.com">
     </div>
   </div>
+  <br>
   <div class="form-group row">
     <label for="password_box" class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-10">
@@ -16,9 +65,11 @@
   </div>
   <br>
      <button type="submit" class="btn btn-primary">Sign in </button>
-</form>
+</form>-->
 
 <hr>
 <p align="center">
   Or, <a href="/user_sign_up">Sign up</a> instead.
 </p>
+</body>
+</html>

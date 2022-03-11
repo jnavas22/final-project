@@ -8,7 +8,7 @@ class MembersController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
-    matching_preferences = Preference.where({ :user_id => the_id })
+    matching_preferences = Preference.where({ :user_id => the_id }).order({ :created_at => :desc})
 
     @the_preference = matching_preferences.at(0)
 

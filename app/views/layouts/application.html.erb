@@ -21,45 +21,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <body>
-    <div class="alert alert-danger" role="alert">
+    <!--<div class="alert alert-danger" role="alert">
       <%= alert %>
     </div>
     <div class="alert alert-warning" role="alert">
       <%= notice %>
-    </div>
+    </div>-->
     <% if @current_user != nil %>
       <% @my_preference = Preference.where({ :user_id => @current_user }).at(0)%>
       <% if @my_preference == nil %>
-            <a class="nav-link" href="/user_sign_out">Sign out</a>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+       <div class="container-fluid">
+          <a class="navbar-brand" href="/">AHN</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/user_sign_out">Sign out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
       <% else %>
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="/preferences">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="/members_list">Roommate List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/user_sign_out">Sign out</a>
-          </li>
-        </ul>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+       <div class="container-fluid">
+          <a class="navbar-brand" href="/">AHN</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/preferences">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/members_list">Member List</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user_sign_out">Sign-out</a>
+              </li>
+            </ul>
+            </div>
+          </div>
+        </nav>
       <% end %>
     <% else %>
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" data-bs-toggle="tab" href="/"> Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="tab" href="/user_sign_in">Sign in</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/user_sign_up">Sign up</a>
-        </li>
-      </ul>
-    <% end %>
-    <%= yield %>
-    <br>
-    <br>
-  </body>
-  <h5>© 2022 Copyright Josselyn Navas </h5>
-</html>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">AHN</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/user_sign_up">Sign up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/user_sign_in">Sign in</a>
+              </li>
+            </ul>
+            </div>
+        </div>
+            </nav>
+          <% end %>
+          <br>
+          <%= yield %>
+          <br>
+          <br>
+        </body>
+      </html>

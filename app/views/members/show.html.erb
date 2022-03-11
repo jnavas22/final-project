@@ -3,9 +3,8 @@
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/bootstrap.css">
 <style>
-body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
 .bgimg {
   background-image: url('https://vastphotos.com/files/uploads/photos/10588/chicago-skyline-photo-l.jpg');
@@ -25,6 +24,7 @@ table.center {
 <% @this_user = User.all.where({ :id => @the_preference.user_id}).at(0) %>
 <table border="1" style="width:50%" class="center">
   <th  style="text-align:center">
+  <br>
     <h1>
       <%= @this_user.first_name %>'s Details
     </h1>
@@ -119,13 +119,11 @@ table.center {
         </dd>
       </div>
     </td>
+    <br>
   </tr>
 </table>
 <br>
-<div align="center">
-  <a href="/add_roommate">
-    <button>Go back</button>
-  </a>
-</div>
+<div class="d-grid gap-2" align="center">
+  <a href="/add_roommate"><button class="btn btn-lg btn-outline-primary" type="button">Add to Preferred Roommates</button></a>
 </body>
 </html>

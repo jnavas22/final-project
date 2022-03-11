@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/bootstrap.css">
     <style>
-      body,h1 {font-family: "system-ui", sans-serif}
       body, html {height: 100%}
       .bgimg {
         background-image: url('https://vastphotos.com/files/uploads/photos/10588/chicago-skyline-photo-l.jpg');
@@ -22,20 +21,17 @@
   </head>
   <body>
     <% @my_preferences = Preference.all.where({ :user_id => @current_user.id}).order({ :created_at => :desc}).at(0) %>
-    <div>
-      <div>
-        <h1>
-          <%= @current_user.first_name%>'s Current Preferences:
-        </h1>
-      </div>
-    </div>
+    
     <table class="table table-hover" id="table1">
-      <thead>
-        <tr>
-          <th scope="col">Item</th>
-          <th scope="col">Answer</th>
-        </tr>
+      <thead colspan="2">
       </thead>
+        <tr colspan>
+          <th><h1>
+          Profile
+        </h1>
+      </div></th>
+        </tr>
+  
       <tbody>
         <tr>
           <th scope="row">Profile Picture</th>
@@ -69,7 +65,7 @@
               <span class="badge rounded-pill bg-warning"> Elevator </span>
             <% end %>
             <% if @my_preferences.doorman %>
-              <span class="badge rounded-pill bg-warning">Doorman <%= @my_preferences.doorman%> </span>
+              <span class="badge rounded-pill bg-warning">Doorman</span>
             <% end %>
             <% if @my_preferences.laundry %>
               <span class="badge rounded-pill bg-warning">In-unit laundry </span>
@@ -87,8 +83,23 @@
         </tr>
       </tbody>
     </table>
-    <hr>
-    <div>
+    <form>
+      <table class="table" id="table1">
+      <tr align="center">
+        <td>
+          <a href="/welcome"><button type="button" class="btn btn-outline-warning">Update Profile</button></a>
+        </td>
+        <td>
+        <a href="/members_list"><button type="button" class="btn btn-outline-info">Go to members</button></a>
+        </td>
+      </tr>
+    </table>
+    </form>
+  <br>
+  
+  </body>
+  </html>
+  <!--  <div>
       <div>
         <h2>
           Update Preferences:
