@@ -30,7 +30,8 @@ These are all our members: You can filter based on your interests.
         </th>
       </tr>
       <% @list_of_members.each do |a_member| %>
-        <% if a_member.id != @current_user.id %>
+      <% @a_member_preference = Preference.where({ :user_id => a_member.id}).at(0) %>
+        <% if a_member.id != @current_user.id && @a_member_preference != nil %>
         <tr>
           <td>
             <%= a_member.first_name %>

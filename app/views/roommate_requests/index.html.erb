@@ -83,6 +83,9 @@ table.center {
         <th>
         Show More
         </th>
+          <th>
+        Delete
+        </th>
       </tr>
 
       <% @my_sent_requests.each do |a_roommate_request| %>
@@ -112,6 +115,9 @@ table.center {
           <a href="/roommate_requests/<%= a_roommate_request.id %>">
             Show details
           </a>
+        </td>
+        <td>
+           <a href = "/delete_roommate_request/<%= a_roommate_request.id %>">Delete</a>
         </td>
       </tr>
       <% end %>

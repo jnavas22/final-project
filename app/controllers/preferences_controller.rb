@@ -32,6 +32,7 @@ class PreferencesController < ApplicationController
     @the_preference.air_conditioner = params.fetch("query_air_conditioner", false)
     @the_preference.picture = params.fetch("query_picture")
     @the_preference.clean = params.fetch("query_clean")
+    @the_preference.industry = params.fetch("query_industry")
 
     if @the_preference.valid?
       @the_preference.save

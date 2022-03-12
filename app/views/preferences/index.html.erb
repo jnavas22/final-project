@@ -21,7 +21,7 @@
   </head>
   <body>
     <% @my_preferences = Preference.all.where({ :user_id => @current_user.id}).order({ :created_at => :desc}).at(0) %>
-    
+    <% if @my_preferences != nil%>
     <table class="table table-hover" id="table1">
       <thead colspan="2">
       </thead>
@@ -48,11 +48,15 @@
         </tr>
         <tr>
           <th scope="row">Number of bathrooms</th>
-          <td><%= @my_preferences.bathroom_num%></td>
+          <td><%= @my_preferences.bathroom_num %></td>
         </tr>
         <tr>
           <th scope="row">Person Type</th>
           <td><%= @my_preferences.person_type%></td>
+        </tr>
+        <tr>
+          <th scope="row">Industry</th>
+          <td><%= @my_preferences.industry%></td>
         </tr>
         <tr>
           <th scope="row">Max Rent</th>
@@ -96,7 +100,65 @@
     </table>
     </form>
   <br>
+  <% else %>
+ <table class="table table-hover" id="table1">
+      <thead colspan="2">
+      </thead>
+        <tr colspan>
+          <th><h1>
+          Profile
+        </h1>
+      </div></th>
+        </tr>
   
+      <tbody>
+        <tr>
+          <th scope="row">Profile Picture </th>
+          <td>No current selection
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Cleanliness</th>
+          <td>No current selection</td>
+        </tr>
+        <tr>
+          <th scope="row">Number of roommates</th>
+          <td>
+          No current selection</td>
+        </tr>
+        <tr>
+          <th scope="row">Number of bathrooms</th>
+           <td>No current selection
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Person Type</th>
+           <td>No current selection
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Max Rent</th>
+         <td>No current selection
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Amenities</th>
+          <td>No current selection
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form>
+      <table class="table" id="table1">
+      <tr align="center">
+        <td>
+          <a href="/welcome"><button type="button" class="btn btn-outline-info">Complete Profile</button></a>
+        </td>
+      </tr>
+    </table>
+    </form>
+  <br>
+  <% end %>
   </body>
   </html>
   <!--  <div>

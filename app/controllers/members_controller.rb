@@ -17,7 +17,7 @@ class MembersController < ApplicationController
 
   def another_index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
+    @members = @q.result(distinct: true)
   end
 
 end
