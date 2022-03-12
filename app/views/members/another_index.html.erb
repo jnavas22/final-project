@@ -1,13 +1,179 @@
-<%= search_form_for (@q, :url => "/members") do |f| %>
-  <p>Narrow results:</p>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/bootstrap.css">
+<style>
+body, html {height: 100%}
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+</style>
+</head>
+<body>
+<div align="center">
+<table  border="0"  class="center">
+<tr>
+<td>
+<h1>Narrow your search</h1>
+</td>
+</tr>
+<td><%= search_form_for(@q, :url => "/members") do |f|  %>
+<h6>First filter</h6>
+  <%= f.grouping_fields(f.object.new_grouping) do |g| %>
+    <%= g.condition_fields(g.object.new_condition) do |c| %>
+      <%= c.attribute_fields do |a| %>
+        <%= a.attribute_select only: %i(id) %>
+      <% end %>
+      <%= c.predicate_select only: %i(cont not_eq eq) %>
+      <%= c.value_fields do |v| %>
+        <%= v.text_field :value %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <h6>Second filter (optional)</h6>
+  <%= f.grouping_fields(f.object.new_grouping) do |g| %>
+    <%= g.condition_fields(g.object.new_condition) do |c| %>
+      <%= c.attribute_fields do |a| %>
+        <%= a.attribute_select only: %i(id) %>
+      <% end %>
+      <%= c.predicate_select only: %i(cont not_eq eq) %>
+      <%= c.value_fields do |v| %>
+        <%= v.text_field :value %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <h6>Third filter (optional)</h6>
+  <%= f.grouping_fields(f.object.new_grouping) do |g| %>
+    <%= g.condition_fields(g.object.new_condition) do |c| %>
+      <%= c.attribute_fields do |a| %>
+        <%= a.attribute_select only: %i(id) %>
+      <% end %>
+      <%= c.predicate_select only: %i(cont not_eq eq) %>
+      <%= c.value_fields do |v| %>
+        <%= v.text_field :value %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </td>
+  <tr>
+  <td>
   <div>
-    <%= f.label :gender_eq, "Gender is" %>
-    <%= f.text_field :gender_eq, :placeholder => "Enter a few characters" %>
+  <br>
+  <%= f.submit :class => "btn btn-primary btn-block" %>
+<%= link_to "Clear", request.path, class: "btn btn-default" %></div>
+</td>
+</tr>
+<% end %>
+</table>
+<!--<%= search_form_for(@q, :url => "/members") do |f| %>
+  
+  <div>
+    <%= f.label :gender_eq, "Gender" %>
+    <%= f.text_field :gender_eq, :placeholder => "e.g Female" %>
   </div>
+  <br>
   <div>
     <%= f.label :to_city_eq, "Destination city is" %>
-    <%= f.text_field :to_city_eq, :placeholder => "Enter a few characters" %>
+    <%= f.text_field :to_city_eq, :placeholder => "e.g. New York City" %>
   </div>
+  <br>
+  <div>
+    <%= f.label :university_eq, "From university" %>
+    <%= f.text_field :to_city_eq, :placeholder => "e.g. University of Chicago" %>
+  </div>
+  <br>
   <%= f.submit :class => "btn btn-primary btn-block" %>
-  <a href="/members">Submit</a>
-<% end %>
+<% end %>-->
+</table>
+
+
+<div>
+<hr>
+<div>
+  <div align="center">
+    <table class = "table table-hover" border="0"  class="center" border-spacing="15px" style="width:80%">
+      <tr class="table-warning">
+        <th >
+          Picture
+        </th>
+        <th >
+          First Name
+        </th>
+        <th >
+          Last Name
+        </th>
+        <th>
+          Gender
+        </th>
+        <th>
+          University
+        </th>
+        <th>
+          Current City
+        </th>
+        <th>
+          Destination City
+        </th>
+              <th>
+          Move-in Date
+        </th>
+        <th>
+          More info
+        </th>
+      </tr>
+      <% @members.each do |a_member| %>
+      <% @a_member_preference = Preference.where({ :user_id => a_member.id}).at(0) %>
+        <% if a_member.id != @current_user.id && @a_member_preference != nil %>
+        <tr>
+          <td>
+          <div style="display: flex; justify-content: center;">
+        <img src="<%= @a_member_preference.picture %>" class="img-responsive"  style="max-width: 100%;">
+        </div>
+          </td>
+          <td>
+            <%= a_member.first_name %>
+          </td>
+          <td>
+            <%= a_member.last_name %>
+          </td>
+          <td>
+            <%= a_member.gender %>
+          </td>
+          <td>
+            <%= a_member.university %>
+          </td>
+          <td>
+            <%= a_member.from_city %>
+          </td>
+          <td>
+            <%= a_member.to_city %>
+          </td>
+          <td>
+            <%= a_member.movedate %>
+          </td>
+          <td>
+            <a href="/members_list/<%= a_member.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
+</body>
+</html>

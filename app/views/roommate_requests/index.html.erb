@@ -15,7 +15,7 @@ table.center {
 </style>
 </head>
 <body> 
-<div>
+<div align="center">
   <div>
     <h1>
       <%= @current_user.first_name%>'s Preferred Roommates
@@ -23,7 +23,6 @@ table.center {
   </div>
 </div>
 
-<hr>
 <% @my_sent_requests = RoommateRequest.where({ :sender_id => @current_user.id})%>
 
 <!-- <div>
@@ -55,43 +54,37 @@ table.center {
     </form>
   </div>
 </div>-->
-
+<hr>
 <div>
-  <div>
-    <table style="width:50%" class="center">
-      <tr>
-        <th  style="text-align: center; vertical-align: middle;">
-          Profile Picture
-        </th>
-
+  <div align="center">
+    <table class = "table table-hover" border="0" style="width:80%">
+      <tr class="table-warning">
         <th>
-          First name
+        Picture
         </th>
-
-        <th>
+        <th >
+          First Name
+        </th>
+        <th >
           Last Name
         </th>
-
         <th>
-          When Added
+          Added When
         </th>
-
         <th>
           Status
         </th>
-
         <th>
-        Show More
+          Show More
         </th>
-          <th>
-        Delete
+        <th>
+          Delete
         </th>
       </tr>
-
       <% @my_sent_requests.each do |a_roommate_request| %>
-      <tr>
-      <td>
-        <% @this_request = Preference.where({ :user_id => a_roommate_request.recipient_id}).at(0) %>
+       <% @this_request = Preference.where({ :user_id => a_roommate_request.recipient_id}).at(0) %>
+       <td>
+       <% @this_request = Preference.where({ :user_id => a_roommate_request.recipient_id}).at(0) %>
         <div style="display: flex; justify-content: center;">
         <img src="<%= @this_request.picture %>" class="img-responsive"  style="max-width: 50%;">
         </div>
@@ -119,8 +112,8 @@ table.center {
         <td>
            <a href = "/delete_roommate_request/<%= a_roommate_request.id %>">Delete</a>
         </td>
-      </tr>
-      <% end %>
+        </tr>
+        <% end %>
     </table>
   </div>
 </div>
