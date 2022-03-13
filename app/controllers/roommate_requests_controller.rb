@@ -1,29 +1,37 @@
 class RoommateRequestsController < ApplicationController
-  def index
+  def index_sent
     matching_roommate_requests = RoommateRequest.all
 
     @list_of_roommate_requests = matching_roommate_requests.order({ :created_at => :desc })
 
-    render({ :template => "roommate_requests/index.html.erb" })
+    render({ :template => "roommate_requests/index_sent.html.erb" })
   end
 
-  def show
+  def show_sent
     the_id = params.fetch("path_id")
 
     matching_roommate_requests = RoommateRequest.where({ :id => the_id })
 
     @the_roommate_request = matching_roommate_requests.at(0)
 
-    render({ :template => "roommate_requests/show.html.erb" })
+    render({ :template => "roommate_requests/show_sent.html.erb" })
   end
-  def received_show
+  def index_received
+    matching_roommate_requests = RoommateRequest.all
+
+    @list_of_roommate_requests = matching_roommate_requests.order({ :created_at => :desc })
+
+    render({ :template => "roommate_requests/index_received.html.erb" })
+  end
+
+  def show_received
     the_id = params.fetch("path_id")
 
     matching_roommate_requests = RoommateRequest.where({ :id => the_id })
 
     @the_roommate_request = matching_roommate_requests.at(0)
 
-    render({ :template => "roommate_requests/received_show.html.erb" })
+    render({ :template => "roommate_requests/show_received.html.erb" })
   end
 
   def create
@@ -69,7 +77,7 @@ class RoommateRequestsController < ApplicationController
     matching_roommate_requests = RoommateRequest.where({ :id => the_id })
     @the_roommate_request = matching_roommate_requests.at(0)
     
-    render(:template => "roommate_requests/personal_info.html.erb")
+    render(:template => "roommate_requests/personal_info_sent.html.erb")
   end
 
   def clean_updates

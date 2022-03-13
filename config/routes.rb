@@ -5,19 +5,19 @@ Rails.application.routes.draw do
   # Routes for the Received roommate request resource:
 
   # CREATE
-  post("/insert_received_roommate_request", { :controller => "received_roommate_requests", :action => "create" })
+  # post("/insert_received_roommate_request", { :controller => "received_roommate_requests", :action => "create" })
           
-  # READ
-  get("/received_roommate_requests", { :controller => "received_roommate_requests", :action => "index" })
+  # # READ
+  # get("/received_roommate_requests", { :controller => "received_roommate_requests", :action => "index" })
   
-  get("/received_roommate_requests/:path_id", { :controller => "received_roommate_requests", :action => "show" })
+  # get("/received_roommate_requests/:path_id", { :controller => "received_roommate_requests", :action => "show" })
   
-  # UPDATE
+  # # UPDATE
   
-  post("/modify_received_roommate_request/:path_id", { :controller => "received_roommate_requests", :action => "update" })
+  # post("/modify_received_roommate_request/:path_id", { :controller => "received_roommate_requests", :action => "update" })
   
-  # DELETE
-  get("/delete_received_roommate_request/:path_id", { :controller => "received_roommate_requests", :action => "destroy" })
+  # # DELETE
+  # get("/delete_received_roommate_request/:path_id", { :controller => "received_roommate_requests", :action => "destroy" })
 
   #------------------------------
 
@@ -46,10 +46,16 @@ Rails.application.routes.draw do
   post("/insert_roommate_request", { :controller => "roommate_requests", :action => "create" })
           
   # READ
-  get("/roommate_requests", { :controller => "roommate_requests", :action => "index" })
+  get("/roommate_requests", { :controller => "roommate_requests", :action => "index_sent" })
 
   
-  get("/roommate_requests/:path_id", { :controller => "roommate_requests", :action => "show" })
+  get("/roommate_requests/:path_id", { :controller => "roommate_requests", :action => "show_sent" })
+
+
+  get("/received_roommate_requests", { :controller => "roommate_requests", :action => "index_received" })
+
+  
+  get("/received_roommate_requests/:path_id", { :controller => "roommate_requests", :action => "show_received" })
 
 
   get("/personal_info/:path_id", { :controller => "roommate_requests", :action => "personal_info"})

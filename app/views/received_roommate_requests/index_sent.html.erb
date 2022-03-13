@@ -77,14 +77,15 @@
          </td>
          <% else %>
          <td>
-          <span class="badge rounded-pill bg-info">Pending</span>
+          <span class="badge rounded-pill bg-warning">Pending</span>
         </td>
-        <% end %>
+        <% end %><%=  %>
         <td>
-         <a href="/roommate_received_requests/<%= a_roommate_request.id %>">
+         <a href="/received_roommate_requests/<%= a_roommate_request.id %>">
             Show details
           </a>
         </td>
+      </tr>
         <% end %>
     </table>
   </div>

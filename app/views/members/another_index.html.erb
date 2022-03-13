@@ -19,8 +19,6 @@ table.center {
 <table  border="0"  class="center">
 <tr>
 <td>
-<% require "date" %>
-
 
 <h1>Narrow your search</h1>
 </td>
@@ -81,29 +79,10 @@ table.center {
 </tr>
 <% end %>
 </table>
-<!--<%= search_form_for(@q, :url => "/members") do |f| %>
-  
-  <div>
-    <%= f.label :gender_eq, "Gender" %>
-    <%= f.text_field :gender_eq, :placeholder => "e.g Female" %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :to_city_eq, "Destination city is" %>
-    <%= f.text_field :to_city_eq, :placeholder => "e.g. New York City" %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :university_eq, "From university" %>
-    <%= f.text_field :to_city_eq, :placeholder => "e.g. University of Chicago" %>
-  </div>
-  <br>
-  <%= f.submit :class => "btn btn-primary btn-block" %>
-<% end %>-->
-</table>
 
 <div>
 <hr>
+<% require "date" %>
 <div>
   <div align="center">
     <table class = "table table-hover" border="0"  class="center" border-spacing="15px" style="width:80%">
@@ -128,6 +107,9 @@ table.center {
         </th>
         <th>
           Destination City
+        </th>
+         <th>
+          Move-in Date
         </th>
         <th>
         Match %
@@ -163,6 +145,9 @@ table.center {
           </td>
           <td>
             <%= a_member.to_city %>
+          </td>
+          <td>
+            <%= a_member.movedate.strftime("%b %d, %Y") %>
           </td>
           <td>
             <button type="button" class="btn btn-outline-info">99%</button>

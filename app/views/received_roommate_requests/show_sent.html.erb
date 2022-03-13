@@ -1,0 +1,26 @@
+<!--the_id = params.fetch("path_id")
+
+    matching_roommate_requests = RoommateRequest.where({ :id => the_id })
+
+    @the_roommate_request = matching_roommate_requests.at(0)-->
+
+
+<% @this_received_request = User.where({ :id => @the_roommate_request.sender_id }).at(0)%>
+<% @the_preference = Preference.where({ :user_id =>  @the_roommate_request.sender_id }).at(0)%>
+
+<div class="d-grid gap-2" align="center">
+<form action="/insert_roommate_request" method="post">
+  <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
+  <input type="hidden" name="query_recipient_id" value="<%= @this_received_request.id %>"></input>
+  <button class="btn btn-lg btn-outline-success" type="submit">Accept Inquiry</Inp></button></a>
+</form>
+</div> 
+<br>
+<div align="center">
+
+</div>
+<br>
+<div align="center"><a href="/roommate_received_requests">Go back <a></div>
+<hr>
+
+<hr>

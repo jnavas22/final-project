@@ -2,9 +2,9 @@ desc "Hydrate the database with some sample data to look at so that developing i
 task({ :sample_data => :environment }) do
   require "date"
 
-  first_names = ["Josselyn", "Sarah", "Mari", "Antonio", "Diego", "William", "Emily"]
-  last_names = ["Navas", "Kwon", "Mirasol", "Cruz", "Quesada", "Garcia", "Simon"]
-  emails = ["josselyn@example.com", "sarah@example.com", "mari@example.com", "antonio@example.com", "diego@example.com", "william@example.com", "emily@example.com"]
+  first_names = ["Josselyn", "Sarah", "Mari", "Antonio", "Diego", "Bruce", "Sheila"]
+  last_names = ["Navas", "Kwon", "Mirasol", "Cruz", "Quesada", "Navas", "Bolanos"]
+  emails = ["josselyn@example.com", "sarah@example.com", "mari@example.com", "antonio@example.com", "diego@example.com", "bruce@example.com", "sheila@example.com"]
   bool = [true, false]
   from_cities = ["Chicago", "Miami", "Boston", "Dallas", "Los Angeles", "Miami", "Chicago"]
   to_cities = ["New York City", "New York", "New York City", "Chicago", "Miami", "Seattle", "Seattle"]

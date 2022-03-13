@@ -19,6 +19,7 @@
     </style>
   </head>
   <body>
+
     <form  action="/insert_preference" method="post" class="form-horizontal" enctype="multipart/form-data">
       <table border="0" style="width:50%" class="center">
         <th>
@@ -42,6 +43,10 @@
           <div>
             <label id="custom_range" class="form-label">On a scale of 1-10, how clean would you rate yourself to be:</label>
             <input type="range" class="form-range" min="0" max="10" step="1" id="custom_range" name="query_clean">
+          </div>
+          <div>
+            <label for="phone">Enter your phone number:</label>
+<input type="tel" id="phone" name="query_telephone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
           </div>
           <div>
             <label class="col-form-label mt-4" for="working-type">Are you a morning person/night owl?</label>

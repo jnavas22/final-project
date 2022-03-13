@@ -7,14 +7,23 @@
 
 <% @this_received_request = User.where({ :id => @the_roommate_request.sender_id }).at(0)%>
 <% @the_preference = Preference.where({ :user_id =>  @the_roommate_request.sender_id }).at(0)%>
-
-<div class="d-grid gap-2" align="center">
-<form action="/insert_roommate_request" method="post">
+<div align="center" class="wrapper">
+  <form action="/insert_roommate_request" method="post">
   <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
   <input type="hidden" name="query_recipient_id" value="<%= @this_received_request.id %>"></input>
   <button class="btn btn-lg btn-outline-success" type="submit">Accept Inquiry</Inp></button></a>
-</form>
-</div> 
+  </form>
+</div>
+<br>
+<% @the_roommate_request = RoommateRequest.where({ :recipient_id => @current_user.id}).at(0)%>
+<div align="center" class="wrapper">
+  <form action="/delete_roommate_request/<%= @the_roommate_request.id %>">
+  <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
+  <input type="hidden" name="query_recipient_id" value="<%= @this_received_request.id %>"></input>
+  <button class="btn btn-lg btn-outline-danger" type="submit">Decline Inquiry</Inp></button></a>
+  </form>
+</div>
+
 <br>
 <div align="center">
 <table border="1" style="width:50%" class="center">
@@ -130,7 +139,7 @@
 </table>
 </div>
 <br>
-<div align="center"><a href="/roommate_received_requests">Go back <a></div>
+<div align="center"><a href="/received_roommate_requests">Go back <a></div>
 <hr>
 
 <hr>

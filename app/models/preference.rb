@@ -15,6 +15,7 @@
 #  pets            :boolean
 #  picture         :string
 #  roommate_num    :integer
+#  telephone       :string
 #  transportation  :boolean
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

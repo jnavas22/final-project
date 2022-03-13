@@ -33,6 +33,7 @@ class PreferencesController < ApplicationController
     @the_preference.picture = params.fetch("query_picture")
     @the_preference.clean = params.fetch("query_clean")
     @the_preference.industry = params.fetch("query_industry")
+    @the_preference.telephone = params.fetch("query_telephone")
 
     if @the_preference.valid?
       @the_preference.save
