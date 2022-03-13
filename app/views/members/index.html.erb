@@ -1,3 +1,5 @@
+require "date"
+<h1>Date.today<h1>
 These are all our members: You can filter based on your interests.
 <hr>
 <div>
@@ -22,7 +24,7 @@ These are all our members: You can filter based on your interests.
         <th>
           Destination City
         </th>
-              <th>
+        <th>
           Move-in Date
         </th>
         <th>
@@ -30,36 +32,36 @@ These are all our members: You can filter based on your interests.
         </th>
       </tr>
       <% @list_of_members.each do |a_member| %>
-      <% @a_member_preference = Preference.where({ :user_id => a_member.id}).at(0) %>
+        <% @a_member_preference = Preference.where({ :user_id => a_member.id}).at(0) %>
         <% if a_member.id != @current_user.id && @a_member_preference != nil %>
-        <tr>
-          <td>
-            <%= a_member.first_name %>
-          </td>
-          <td>
-            <%= a_member.last_name %>
-          </td>
-          <td>
-            <%= a_member.gender %>
-          </td>
-          <td>
-            <%= a_member.university %>
-          </td>
-          <td>
-            <%= a_member.from_city %>
-          </td>
-          <td>
-            <%= a_member.to_city %>
-          </td>
-          <td>
-            <%= a_member.movedate %>
-          </td>
-          <td>
-            <a href="/members_list/<%= a_member.id %>">
-              Show details
-            </a>
-          </td>
-        </tr>
+          <tr>
+            <td>
+              <%= a_member.first_name %>
+            </td>
+            <td>
+              <%= a_member.last_name %>
+            </td>
+            <td>
+              <%= a_member.gender %>
+            </td>
+            <td>
+              <%= a_member.university %>
+            </td>
+            <td>
+              <%= a_member.from_city %>
+            </td>
+            <td>
+              <%= a_member.to_city %>
+            </td>
+            <td>
+              <%= a_member.movedate.strftime("%b %d, %Y") %>
+            </td>
+            <td>
+              <a href="/members_list/<%= a_member.id %>">
+                Show details
+              </a>
+            </td>
+          </tr>
         <% end %>
       <% end %>
     </table>

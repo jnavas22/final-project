@@ -24,8 +24,11 @@
         <th>
           <div class="jumbotron">
             <h1 class="display-4">Welcome, <%= @current_user.first_name %>!</h1>
+            <% my_preference = Preference.where({ :user_id => @current_user.id}).at(0)%>
+            <% if my_preference != nil %>
             <p class="lead">Let's get started on finding you a roommate for your new adventure in <%= @current_user.to_city %> </p>
             <hr class="my-4">
+            <% end %>
           </div>
           <div class="alert alert-success"">
             <h4 align="center" class="alert-heading">First, tell us more about yourself </h4>
@@ -70,7 +73,7 @@
           </div>
           <br>
           <div class="alert alert-success"">
-            <h4 align="center" class="alert-heading">Next, tell us more about what you're looking for</h4>
+            <h4 align="center" class="alert-heading">Next, tell us what you're looking for</h4>
           </div>
           <div>
             <label class="col-form-label mt-4" for="roommate_num">How many roommates are you looking for?</label>
@@ -95,7 +98,7 @@
             </select>
           </div>
           <div>
-            <label class="col-form-label mt-4" for="amenities">Which amenities should must your apartment include?</label>
+            <label class="col-form-label mt-4" for="amenities">What apartment amenities are you looking for?</label>
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" id="laundry_type" name = "query_laundry">
               <label class="form-check-label" for="laundry_type">In-unit laundry</label>
@@ -131,7 +134,9 @@
               </div>
             </th>
           </table>
-          <button type="submit" class="btn btn-primary">Enter preferences </button>
+          <div align="center">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
         </form>
         <!-- BREAK -->
         <!--<h5> First, tell us more about yourself</h5>

@@ -19,6 +19,8 @@ table.center {
 <table  border="0"  class="center">
 <tr>
 <td>
+<% require "date" %>
+
 <h1>Narrow your search</h1>
 </td>
 </tr>
@@ -162,7 +164,7 @@ table.center {
             <%= a_member.to_city %>
           </td>
           <td>
-            <%= a_member.movedate %>
+            <%= a_member.movedate.strftime("%b %d, %Y") %>
           </td>
           <td>
             <a href="/members_list/<%= a_member.id %>">

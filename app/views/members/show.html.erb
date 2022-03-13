@@ -21,7 +21,10 @@ table.center {
 </head>
 <body>
 
+
 <% @this_user = User.all.where({ :id => @the_preference.user_id}).at(0) %>
+<% @this_request = RoommateRequest.where({ :recipient_id => @this_user.id}).where({ :sender_id => @current_user}).at(0) %>
+<% if @this_request == nil %>
 <div class="d-grid gap-2" align="center">
 <form action="/insert_roommate_request" method="post">
   <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
@@ -29,6 +32,11 @@ table.center {
   <button class="btn btn-lg btn-outline-success" type="submit">Add to Preferred Roommates</button></a>
 </form>
 </div> 
+<% else%>
+<div align="center" class="alert alert-info" role="alert">
+  You've already added this user! 
+</div>
+<% end %>
 <table border="1" style="width:50%" class="center">
   <th  style="text-align:center">
   <br>
@@ -112,7 +120,7 @@ table.center {
     <td>
       <div>
         <dt>
-          Looking for the following amenities
+          My preferred apartment amenities
         </dt>
         <dd>
             <% @user_preference = Preference.all.where({ :user_id => @this_user.id }).where({ :id => @the_preference.id}).at(0) %>
