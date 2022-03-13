@@ -27,9 +27,14 @@ Rails.application.routes.draw do
   post("/insert_roommate_request", { :controller => "roommate_requests", :action => "create" })
           
   # READ
-  get("/roommate_requests", { :controller => "roommate_requests", :action => "index" })
+  get("/roommate_sent_requests", { :controller => "roommate_requests", :action => "sent" })
+
+  get("/roommate_received_requests", { :controller => "roommate_requests", :action => "received" })
+
   
-  get("/roommate_requests/:path_id", { :controller => "roommate_requests", :action => "show" })
+  get("/roommate_sent_requests/:path_id", { :controller => "roommate_requests", :action => "sent_show" })
+
+  get("/roommate_received_requests/:path_id", { :controller => "roommate_requests", :action => "received_show" })
   
   # UPDATE
   
