@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get("/roommate_sent_requests/:path_id", { :controller => "roommate_requests", :action => "sent_show" })
 
   get("/roommate_received_requests/:path_id", { :controller => "roommate_requests", :action => "received_show" })
+
+  get("/personal_info/:path_id", { :controller => "roommate_requests", :action => "personal_info"})
   
   # UPDATE
   

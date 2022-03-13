@@ -70,4 +70,13 @@ class RoommateRequestsController < ApplicationController
 
     redirect_to("/roommate_sent_requests", { :notice => "Roommate request deleted successfully."} )
   end
+
+  def personal_info
+    the_id = params.fetch("path_id")
+
+    matching_roommate_requests = RoommateRequest.where({ :id => the_id })
+    @the_roommate_request = matching_roommate_requests.at(0)
+    
+    render(:template => "roommate_requests/personal_info.html.erb")
+  end
 end

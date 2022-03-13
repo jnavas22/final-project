@@ -103,9 +103,15 @@ table.center {
         </td>
         <% end %>
         <td>
-          <a href="/roommate_sent_requests/<%= a_roommate_request.id %>">
+        <% if @requested_by_you != nil && @requested_to_you != nil %> <!-- if they've matched-->
+        <a href="/personal_info/<%= a_roommate_request.id %>">Personal details</a>
+
+         
+        <% else %>
+         <a href="/roommate_sent_requests/<%= a_roommate_request.id %>">
             Show details
           </a>
+        <% end %>
         </td>
         <td>
            <a href = "/delete_roommate_request/<%= a_roommate_request.id %>">Delete</a>

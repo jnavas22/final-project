@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/bootstrap.css">
+<style>
+body, html {height: 100%}
+
+.bgimg {
+  background-image: url('https://vastphotos.com/files/uploads/photos/10588/chicago-skyline-photo-l.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+</style>
+</head>
+<body>
+<!--     the_id = params.fetch("path_id")
+
+    matching_roommate_requests = RoommateRequest.where({ :id => the_id })
+    @the_roommate_request = matching_roommate_requests.at(0)-->
+
+
+<div align="center">
+<table border="1" style="width:50%" class="center">
+<% @this_user = User.where({ :id => @the_roommate_request.recipient_id}).at(0) %>
+<% @the_preference = Preference.where({ :user_id => @the_roommate_request.recipient_id}).at(0)%>
+
+<th  style="text-align:center">
+  <br>
+    <h1>
+      <%= @this_user.first_name %>'s Details
+    </h1>
+  </th>
+  <tr style="text-align:center">
+    <td>
+      <div>
+        <dd>
+          <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 50%;">
+        </dd>
+      </div>
+    </td>
+  </tr>
+  <tr style="text-align:center">
+    <td>
+      <div>
+        <dt>
+          Phone Number
+        </dt>
+        <dd>
+          <%= @the_preference.person_type %>
+        </dd>
+      </div>
+    </td>
+  </tr>
+  <tr style="text-align:center">
+    <td>
+      <div>
+        <dt>
+          Email
+        </dt>
+        <dd>
+          <%= @the_preference.industry %>
+        </dd>
+      </div>
+    </td>
+  </tr>
+  <tr style="text-align:center">
+    <td>
+      <div>
+        <dt>
+          LinkedIn
+        </dt>
+        <dd>
+          $<%= @the_preference.max_rent %>
+        </dd>
+      </div>
+    </td>
+  </tr>
+  
+</table>
+<div> 
+</body>
+</html>
