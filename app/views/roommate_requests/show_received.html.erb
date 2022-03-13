@@ -1,12 +1,35 @@
-<!--the_id = params.fetch("path_id")
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/bootstrap.css">
+<style>
+body, html {height: 100%}
 
-    matching_roommate_requests = RoommateRequest.where({ :id => the_id })
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
 
-    @the_roommate_request = matching_roommate_requests.at(0)-->
+</style>
+</head>
+<body> 
 
 
+<!-- the info of user who sent request-->
 <% @this_received_request = User.where({ :id => @the_roommate_request.sender_id }).at(0)%>
-<% @the_preference = Preference.where({ :user_id =>  @the_roommate_request.sender_id }).at(0)%>
+
+<!-- the preference of user who sent request -->
+<% @the_preference = Preference.where({ :user_id =>  @the_roommate_request.sender_id }).order({ :created_at => :desc}).at(0)%>
+
+<!-- the roommate request in question-->
+<% @the_roommate_request = RoommateRequest.where({ :recipient_id => @current_user.id}).at(0)%>
+
+<!-- respsonse buttons-->
+<table table border="0" class="center">
+<tr>
+<td>
 <div align="center" class="wrapper">
   <form action="/insert_roommate_request" method="post">
   <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
@@ -14,8 +37,8 @@
   <button class="btn btn-lg btn-outline-success" type="submit">Accept Inquiry</Inp></button></a>
   </form>
 </div>
-<br>
-<% @the_roommate_request = RoommateRequest.where({ :recipient_id => @current_user.id}).at(0)%>
+</td>
+<td>
 <div align="center" class="wrapper">
   <form action="/delete_roommate_request/<%= @the_roommate_request.id %>">
   <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
@@ -23,6 +46,9 @@
   <button class="btn btn-lg btn-outline-danger" type="submit">Decline Inquiry</Inp></button></a>
   </form>
 </div>
+</td>
+</tr>
+</table>
 
 <br>
 <div align="center">
@@ -37,7 +63,7 @@
     <td>
       <div>
         <dt>
-          Profile picture
+         
         </dt>
         <dd>
           <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 50%;">
@@ -112,24 +138,22 @@
           Looking for the following amenities
         </dt>
         <dd>
-            <% @user_preference = Preference.all.where({ :user_id => @the_roommate_request.sender_id }).where({ :id => @the_preference.id}).at(0) %>
-            
-            <% if @user_preference.elevator %>
+            <% if @the_preference.elevator %>
               <span class="badge rounded-pill bg-warning"> Elevator </span>
             <% end %>
-            <% if @user_preference.doorman %>
+            <% if @the_preference.doorman %>
               <span class="badge rounded-pill bg-warning">Doorman</span>
             <% end %>
-            <% if @user_preference.laundry %>
+            <% if @the_preference.laundry %>
               <span class="badge rounded-pill bg-warning">In-unit laundry </span>
             <% end %>
-            <% if @user_preference.air_conditioner%>
+            <% if @the_preference.air_conditioner%>
               <span class="badge rounded-pill bg-warning">Air-conditioner</span>
             <% end %>
-            <% if @user_preference.transportation %>
+            <% if @the_preference.transportation %>
               <span class="badge rounded-pill bg-warning">Close to public transportation</span>
             <%end %>
-            <% if @user_preference.pets %>
+            <% if @the_preference.pets %>
               <span class="badge rounded-pill bg-warning">Pet-friendly</span>
             <%end %>
         </dd>

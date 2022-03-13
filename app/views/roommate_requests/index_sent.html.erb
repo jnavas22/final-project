@@ -93,9 +93,14 @@ table.center {
         <!--if you sent them a preference, and they sent you a preference, matched -->
         <% @requested_by_you = RoommateRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_request.id}).at(0) %>
         <% @requested_to_you = RoommateRequest.where({ :recipient_id => @current_user.id}).where({ :sender_id => @this_request.id}).at(0) %>
-         <% if @requested_by_you != nil && @requested_to_you != nil %>
+        <% @contacted_by_you = ContactRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_request.id}).at(0)%>
+         <% if @requested_by_you != nil && @requested_to_you != nil && @contacted_by_you == nil %>
          <td>
          <span class="badge rounded-pill bg-success">Matched</span>
+         </td>
+         <% elsif @requested_by_you != nil && @requested_to_you != nil && @contacted_by_you != nil %>
+          <td>
+         <span class="badge rounded-pill bg-info">Contacted</span>
          </td>
          <% else %>
          <td>
@@ -104,7 +109,7 @@ table.center {
         <% end %>
         <td>
         <% if @requested_by_you != nil && @requested_to_you != nil %> <!-- if they've matched-->
-        <a href="/personal_info/<%= a_roommate_request.id %>">Personal details</a>
+        <a href="/personal_info/<%= a_roommate_request.id %>">Contact info</a>
 
          
         <% else %>

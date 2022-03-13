@@ -43,6 +43,7 @@
       <% @my_received_requests.each do |a_roommate_request| %>
         <% @this_received_request = User.where({ :id => a_roommate_request.sender_id}).at(0) %>
        <% @this_received_request_preferences = Preference.where({ :user_id => a_roommate_request.sender_id}).at(0) %>
+      <tr>
        <td>
         <div style="display: flex; justify-content: center;">
         <img src="<%= @this_received_request_preferences.picture %>" class="img-responsive"  style="max-width: 100%;">
@@ -71,19 +72,24 @@
         <!--if you sent them a preference, and they sent you a preference, matched -->
         <% @requested_by_you = RoommateRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_received_request.id}).at(0) %>
         <% @requested_to_you = RoommateRequest.where({ :recipient_id => @current_user.id}).where({ :sender_id => @this_received_request.id}).at(0) %>
-         <% if @requested_by_you != nil && @requested_to_you != nil %>
+        <% @contacted_by_you = ContactRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_received_request.id}).at(0)%>
+         <% if @requested_by_you != nil && @requested_to_you != nil && @contacted_by_you == nil %>
          <td>
          <span class="badge rounded-pill bg-success">Matched</span>
          </td>
+         <% elsif @requested_by_you != nil && @requested_to_you != nil && @contacted_by_you != nil%>
+         <td>
+         <span class="badge rounded-pill bg-info">Contacted</span>
+         </td>
          <% else %>
          <td>
-          <span class="badge rounded-pill bg-info">Pending</span>
+          <span class="badge rounded-pill bg-warning">Pending</span>
         </td>
         <% end %>
         <td>
          <% if @requested_by_you != nil && @requested_to_you != nil %> <!-- if they've matched-->
 
-        <a href="/personal_info/<%= a_roommate_request.id %>">Personal details</a>
+        <a href="/personal_info/<%= a_roommate_request.id %>">Contact info</a>
 
         <% else %>
          <a href="/received_roommate_requests/<%= a_roommate_request.id %>">
@@ -93,6 +99,7 @@
 
         </td>
         <% end %>
+      </tr>
     </table>
   </div>
 </div>

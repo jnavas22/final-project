@@ -1,167 +1,225 @@
 <html>
-<head>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/bootstrap.css">
-<style>
-body, html {height: 100%}
+  <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <style>
+      body, html {height: 100%}
 
-table.center {
-    margin-left:auto; 
-    margin-right:auto;
-  }
-
-</style>
-</head>
-<body>
-<div align="center">
-<table  border="0"  class="center">
-<tr>
-<td>
-
-<h1>Narrow your search</h1>
-</td>
-</tr>
-<td><%= search_form_for(@q, :url => "/members") do |f|  %>
-<h6>First filter</h6>
-  <%= f.grouping_fields(f.object.new_grouping) do |g| %>
-    <%= g.condition_fields(g.object.new_condition) do |c| %>
-      <%= c.attribute_fields do |a| %>
-        <%= a.attribute_select only: %i(id) %>
-      <% end %>
-      <%= c.predicate_select only: %i(cont not_eq eq) %>
-      <%= c.value_fields do |v| %>
-        <%= v.text_field :value %>
-      <% end %>
-    <% end %>
-  <% end %>
-  </td>
-  </tr>
-  <tr>
-  <td>
-  <h6>Second filter (optional)</h6>
-  <%= f.grouping_fields(f.object.new_grouping) do |g| %>
-    <%= g.condition_fields(g.object.new_condition) do |c| %>
-      <%= c.attribute_fields do |a| %>
-        <%= a.attribute_select only: %i(id) %>
-      <% end %>
-      <%= c.predicate_select only: %i(cont not_eq eq) %>
-      <%= c.value_fields do |v| %>
-        <%= v.text_field :value %>
-      <% end %>
-    <% end %>
-  <% end %>
-  </td>
-  </tr>
-  <tr>
-  <td>
-  <h6>Third filter (optional)</h6>
-  <%= f.grouping_fields(f.object.new_grouping) do |g| %>
-    <%= g.condition_fields(g.object.new_condition) do |c| %>
-      <%= c.attribute_fields do |a| %>
-        <%= a.attribute_select only: %i(id) %>
-      <% end %>
-      <%= c.predicate_select only: %i(cont not_eq eq) %>
-      <%= c.value_fields do |v| %>
-        <%= v.text_field :value %>
-      <% end %>
-    <% end %>
-  <% end %>
-  </td>
-  <tr>
-  <td>
-  <div>
-  <br>
-  <%= f.submit :class => "btn btn-primary btn-block" %>
-<%= link_to "Clear", request.path, class: "btn btn-default" %></div>
-</td>
-</tr>
-<% end %>
-</table>
-
-<div>
-<hr>
-<% require "date" %>
-<div>
-  <div align="center">
-    <table class = "table table-hover" border="0"  class="center" border-spacing="15px" style="width:80%">
-      <tr class="table-warning">
-        <th >
-          Picture
-        </th>
-        <th >
-          First Name
-        </th>
-        <th >
-          Last Name
-        </th>
-        <th>
-          Gender
-        </th>
-        <th>
-          University
-        </th>
-        <th>
-          Current City
-        </th>
-        <th>
-          Destination City
-        </th>
-         <th>
-          Move-in Date
-        </th>
-        <th>
-        Match %
-        </th>
-        
-        <th>
-          More info
-        </th>
-      </tr>
-      <% @members.each do |a_member| %>
-      <% @a_member_preference = Preference.where({ :user_id => a_member.id}).at(0) %>
-        <% if a_member.id != @current_user.id && @a_member_preference != nil %>
+      table.center {
+          margin-left:auto;
+          margin-right:auto;
+        }
+    </style>
+  </head>
+  <body>
+    <div align="center">
+      <table  border="0"  class="center">
         <tr>
           <td>
-          <div style="display: flex; justify-content: center;">
-        <img src="<%= @a_member_preference.picture %>" class="img-responsive"  style="max-width: 100%;">
-        </div>
-          </td>
-          <td>
-            <%= a_member.first_name %>
-          </td>
-          <td>
-            <%= a_member.last_name %>
-          </td>
-          <td>
-            <%= a_member.gender %>
-          </td>
-          <td>
-            <%= a_member.university %>
-          </td>
-          <td>
-            <%= a_member.from_city %>
-          </td>
-          <td>
-            <%= a_member.to_city %>
-          </td>
-          <td>
-            <%= a_member.movedate.strftime("%b %d, %Y") %>
-          </td>
-          <td>
-            <button type="button" class="btn btn-outline-info">99%</button>
-          </td>
-          <td>
-            <a href="/members_list/<%= a_member.id %>">
-              Show details
-            </a>
+            <!-- THE SEARCH BAR -->
+            <h1>Narrow your search</h1>
           </td>
         </tr>
+        <td><%= search_form_for(@q, :url => "/members") do |f|  %>
+            <h6>First filter</h6>
+            <%= f.grouping_fields(f.object.new_grouping) do |g| %>
+              <%= g.condition_fields(g.object.new_condition) do |c| %>
+                <%= c.attribute_fields do |a| %>
+                  <%= a.attribute_select only: %i(id) %>
+                <% end %>
+                <%= c.predicate_select only: %i(cont not_eq eq) %>
+                <%= c.value_fields do |v| %>
+                  <%= v.text_field :value %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h6>Second filter (optional)</h6>
+            <%= f.grouping_fields(f.object.new_grouping) do |g| %>
+              <%= g.condition_fields(g.object.new_condition) do |c| %>
+                <%= c.attribute_fields do |a| %>
+                  <%= a.attribute_select only: %i(id) %>
+                <% end %>
+                <%= c.predicate_select only: %i(cont not_eq eq) %>
+                <%= c.value_fields do |v| %>
+                  <%= v.text_field :value %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h6>Third filter (optional)</h6>
+            <%= f.grouping_fields(f.object.new_grouping) do |g| %>
+              <%= g.condition_fields(g.object.new_condition) do |c| %>
+                <%= c.attribute_fields do |a| %>
+                  <%= a.attribute_select only: %i(id) %>
+                <% end %>
+                <%= c.predicate_select only: %i(cont not_eq eq) %>
+                <%= c.value_fields do |v| %>
+                  <%= v.text_field :value %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </td>
+          <tr>
+            <td>
+              <div>
+                <br>
+                <%= f.submit :class => "btn btn-primary btn-block" %>
+                <%= link_to "Clear", request.path, class: "btn btn-default" %></div>
+            </td>
+          </tr>
         <% end %>
-      <% end %>
-    </table>
-  </div>
-</div>
-</body>
-</html>
+      </table>
+
+
+
+      <!-- THE ACTUAL TABLE-->
+
+      <% require "date" %>
+      <% @my_preferences = Preference.all.where({ :user_id => @current_user.id}).order({ :created_at => :desc}).at(0) %>
+      <% @my_details = User.where({ :id => @current_user.id }).at(0)%>
+      <div>
+        <hr>
+        <div>
+          <div align="center">
+            <table class = "table table-hover" border="0"  class="center" border-spacing="15px" style="width:80%">
+              <tr class="table-warning">
+                <th >
+                  Picture
+                </th>
+                <th >
+                  First Name
+                </th>
+                <th >
+                  Last Name
+                </th>
+                <th>
+                  Gender
+                </th>
+                <th>
+                  University
+                </th>
+                <th>
+                  Current City
+                </th>
+                <th>
+                  Destination City
+                </th>
+                <th>
+                  Move-in Date
+                </th>
+                <th>
+                  Match %
+                </th>
+                <th>
+                  More info
+                </th>
+              </tr>
+              <% @members.each do |a_member| %>
+                <% @a_member_preference = Preference.where({ :user_id => a_member.id}).at(0) %>
+                <% if a_member.id != @current_user.id && @a_member_preference != nil %>
+                  <tr>
+                    <td>
+                      <div style="display: flex; justify-content: center;">
+                        <img src="<%= @a_member_preference.picture %>" class="img-responsive"  style="max-width: 100%;">
+                      </div>
+                    </td>
+                    <td>
+                      <%= a_member.first_name %>
+                    </td>
+                    <td>
+                      <%= a_member.last_name %>
+                    </td>
+                    <td>
+                      <%= a_member.gender %>
+                    </td>
+                    <td>
+                      <%= a_member.university %>
+                    </td>
+                    <td>
+                      <%= a_member.from_city %>
+                    </td>
+                    <td>
+                      <%= a_member.to_city %>
+                    </td>
+                    <td>
+                      <%= a_member.movedate.strftime("%b %d, %Y") %>
+                    </td>
+                    <td>
+                    <% if a_member.to_city == @my_details.to_city%>
+                    <% city_score = 50 %>
+                    <% else %>
+                    <% city_score = 0 %>
+                    <% end %>
+                    <% if ((@a_member_preference.max_rent - 300 )..(@a_member_preference.max_rent + 300)).include?(@my_preferences.max_rent)%>
+                    <% rent_score = 20 %>
+                    <% else rent_score = 0%>
+                    <% end %>
+                    <% lower_bound_rn = @my_preferences.roommate_num - 1 %>
+                    <% upper_bound_rn = @my_preferences.roommate_num + 1 %>
+                    <% if (lower_bound_rn..upper_bound_rn).member?(@a_member_preference.roommate_num) %>
+                    <% roommate_score = 5 %>
+                    <% else %>
+                    <% roommate_score = 0%>
+                    <% end %>
+                    <% lower_bound_bn = @my_preferences.bathroom_num - 1 %>
+                    <% upper_bound_bn = @my_preferences.bathroom_num + 1 %>
+                    <% if (lower_bound_bn..upper_bound_bn).member?(@a_member_preference.bathroom_num) %>
+                    <% bathroom_score = 5 %>
+                    <% else %>
+                    <% bathroom_score = 3%>
+                    <% end %>
+                    <% start_time = @my_details.movedate - 1.month %>
+                    <% end_time = @my_details.movedate + 1.month %>
+                    <% if a_member.movedate.between?(start_time, end_time)%>
+                    <% date_score = 10 %>
+                    <% else %>
+                    <% date_score = 0 %>
+                    <% end %>
+                    <% if @my_preferences.pets == @a_member_preference.pets%>
+                    <% pet_score = 2 %>
+                    <% else pet_score = 0 %>
+                    <% end %>
+                    <% if @my_preferences.laundry == @a_member_preference.laundry%>
+                    <% laundry_score = 2 %>
+                    <% else laundry_score = 0 %>
+                    <% end %>
+                    <% if @my_preferences.elevator == @a_member_preference.elevator%>
+                    <% elevator_score = 2 %>
+                    <% else elevator_score = 0 %>
+                    <% end %>
+                    <% if @my_preferences.doorman == @a_member_preference.doorman%>
+                    <% doorman_score = 2 %>
+                    <% else doorman_score = 0 %>
+                    <% end %>
+                    <% if @my_preferences.transportation == @a_member_preference.transportation%>
+                    <% transportation_score = 2 %>
+                    <% else transportation_score = 0 %>
+                     <% end %>
+                    <% if @my_preferences.air_conditioner == @a_member_preference.air_conditioner%>
+                    <% air_conditioner_score = 2 %>
+                    <% else air_conditioner_score = 0 %>
+                    <% end %>
+                      <button type="button" class="btn btn-outline-info"><%= city_score + rent_score + roommate_score + bathroom_score + date_score + pet_score + laundry_score + elevator_score + doorman_score + transportation_score + air_conditioner_score%>%</button>
+                    </td>
+                    <td>
+                      <a href="/members_list/<%= a_member.id %>">
+                        Show details
+                      </a>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </body>
+    </html>

@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Contact request resource:
+
+  # CREATE
+  post("/insert_contact_request", { :controller => "contact_requests", :action => "create" })
+          
+  # READ
+  get("/contact_requests", { :controller => "contact_requests", :action => "index" })
+  
+  get("/contact_requests/:path_id", { :controller => "contact_requests", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_contact_request/:path_id", { :controller => "contact_requests", :action => "update" })
+  
+  # DELETE
+  get("/delete_contact_request/:path_id", { :controller => "contact_requests", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Received roommate request resource:
 
   # CREATE
@@ -66,6 +85,7 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_roommate_request/:path_id", { :controller => "roommate_requests", :action => "destroy" })
+
 
   #------------------------------
 
