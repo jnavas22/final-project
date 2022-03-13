@@ -19,5 +19,4 @@ class MembersController < ApplicationController
     @q = User.ransack(params[:q])
     @members = @q.result(distinct: true)
   end
-
 end

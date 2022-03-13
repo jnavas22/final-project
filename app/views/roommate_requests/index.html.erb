@@ -99,7 +99,7 @@ table.center {
          </td>
          <% else %>
          <td>
-          <span class="badge rounded-pill bg-info">Pending</span>
+          <span class="badge rounded-pill bg-warning">Pending</span>
         </td>
         <% end %>
         <td>
@@ -108,7 +108,7 @@ table.center {
 
          
         <% else %>
-         <a href="/roommate_sent_requests/<%= a_roommate_request.id %>">
+         <a href="/roommate_requests/<%= a_roommate_request.id %>">
             Show details
           </a>
         <% end %>

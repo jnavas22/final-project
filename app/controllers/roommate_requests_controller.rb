@@ -1,28 +1,20 @@
 class RoommateRequestsController < ApplicationController
-  def sent
+  def index
     matching_roommate_requests = RoommateRequest.all
 
     @list_of_roommate_requests = matching_roommate_requests.order({ :created_at => :desc })
 
-    render({ :template => "roommate_requests/sent.html.erb" })
+    render({ :template => "roommate_requests/index.html.erb" })
   end
 
-  def received
-    matching_roommate_requests = RoommateRequest.all
-
-    @list_of_roommate_requests = matching_roommate_requests.order({ :created_at => :desc })
-
-    render({ :template => "roommate_requests/received.html.erb" })
-  end
-
-  def sent_show
+  def show
     the_id = params.fetch("path_id")
 
     matching_roommate_requests = RoommateRequest.where({ :id => the_id })
 
     @the_roommate_request = matching_roommate_requests.at(0)
 
-    render({ :template => "roommate_requests/sent_show.html.erb" })
+    render({ :template => "roommate_requests/show.html.erb" })
   end
   def received_show
     the_id = params.fetch("path_id")
@@ -41,9 +33,9 @@ class RoommateRequestsController < ApplicationController
 
     if the_roommate_request.valid?
       the_roommate_request.save
-      redirect_to("/roommate_sent_requests", { :notice => "Roommate request created successfully." })
+      redirect_to("/roommate_requests", { :notice => "Roommate request created successfully." })
     else
-      redirect_to("/roommate_sent_requests", { :notice => "Roommate request failed to create successfully." })
+      redirect_to("/roommate_requests", { :notice => "Roommate request failed to create successfully." })
     end
   end
 
@@ -68,7 +60,7 @@ class RoommateRequestsController < ApplicationController
 
     the_roommate_request.destroy
 
-    redirect_to("/roommate_sent_requests", { :notice => "Roommate request deleted successfully."} )
+    redirect_to("/roommate_requests", { :notice => "Roommate request deleted successfully."} )
   end
 
   def personal_info
@@ -78,5 +70,9 @@ class RoommateRequestsController < ApplicationController
     @the_roommate_request = matching_roommate_requests.at(0)
     
     render(:template => "roommate_requests/personal_info.html.erb")
+  end
+
+  def clean_updates
+    render({ :template => "roommate_requests/clean_updates.html.erb" })
   end
 end

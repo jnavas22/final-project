@@ -1,0 +1,15 @@
+<% @my_sent_requests = RoommateRequest.where({ :sender_id => @current_user.id})%>
+<% @my_sent_requests.each do |a_roommate_request| %>
+  <% @this_request = User.where({ :id => a_roommate_request.recipient_id}).at(0) %>
+  <% @this_request_preferences = Preference.where({ :user_id => a_roommate_request.recipient_id}).at(0) %>
+  <% @requested_by_you = RoommateRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_request.id}).at(0) %>
+  <% @requested_to_you = RoommateRequest.where({ :recipient_id => @current_user.id}).where({ :sender_id => @this_request.id}).at(0) %>
+  <% if @requested_by_you != nil && @requested_to_you != nil %>
+    <div  style="border:2px solid black;">
+    <button type="button" class="btn btn-success">Matched</button>
+    <button type="button" class="btn btn-info">Contacted</button>
+    <img src="<%= @this_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
+    <%= @this_request.email %>
+    </div>
+  <% end %>
+<% end %>

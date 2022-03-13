@@ -21,6 +21,7 @@ table.center {
 <td>
 <% require "date" %>
 
+
 <h1>Narrow your search</h1>
 </td>
 </tr>
@@ -101,7 +102,6 @@ table.center {
 <% end %>-->
 </table>
 
-
 <div>
 <hr>
 <div>
@@ -129,6 +129,10 @@ table.center {
         <th>
           Destination City
         </th>
+        <th>
+        Match %
+        </th>
+        
         <th>
           More info
         </th>
@@ -159,6 +163,9 @@ table.center {
           </td>
           <td>
             <%= a_member.to_city %>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-info">99%</button>
           </td>
           <td>
             <a href="/members_list/<%= a_member.id %>">

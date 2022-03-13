@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Received roommate request resource:
+
+  # CREATE
+  post("/insert_received_roommate_request", { :controller => "received_roommate_requests", :action => "create" })
+          
+  # READ
+  get("/received_roommate_requests", { :controller => "received_roommate_requests", :action => "index" })
+  
+  get("/received_roommate_requests/:path_id", { :controller => "received_roommate_requests", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_received_roommate_request/:path_id", { :controller => "received_roommate_requests", :action => "update" })
+  
+  # DELETE
+  get("/delete_received_roommate_request/:path_id", { :controller => "received_roommate_requests", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Preference resource:
   get("/", { :controller => "user_authentication", :action => "index" })
   # CREATE
@@ -27,14 +46,11 @@ Rails.application.routes.draw do
   post("/insert_roommate_request", { :controller => "roommate_requests", :action => "create" })
           
   # READ
-  get("/roommate_sent_requests", { :controller => "roommate_requests", :action => "sent" })
-
-  get("/roommate_received_requests", { :controller => "roommate_requests", :action => "received" })
+  get("/roommate_requests", { :controller => "roommate_requests", :action => "index" })
 
   
-  get("/roommate_sent_requests/:path_id", { :controller => "roommate_requests", :action => "sent_show" })
+  get("/roommate_requests/:path_id", { :controller => "roommate_requests", :action => "show" })
 
-  get("/roommate_received_requests/:path_id", { :controller => "roommate_requests", :action => "received_show" })
 
   get("/personal_info/:path_id", { :controller => "roommate_requests", :action => "personal_info"})
   
@@ -77,11 +93,15 @@ Rails.application.routes.draw do
 
   # Routes for the Member resource:
 
-  #READ
+  #READ 
   get("/members", { :controller => "members", :action => "another_index"})
   get("/members_list", { :controller => "members", :action => "index"})
   get("/members_list/:path_id", { :controller => "members", :action => "show"})
 
 
+   # Routes for the Update resource:
+
+    #READ 
+    get("/updates", { :controller => "roommate_requests", :action => "clean_updates"})
   
 end

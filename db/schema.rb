@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_11_160448) do
+ActiveRecord::Schema.define(version: 2022_03_13_053855) do
 
   create_table "preferences", force: :cascade do |t|
     t.integer "user_id"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 2022_03_11_160448) do
     t.string "picture"
     t.integer "clean"
     t.string "industry"
+  end
+
+  create_table "received_roommate_requests", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "roommate_requests", force: :cascade do |t|
