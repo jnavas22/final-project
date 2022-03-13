@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Final roommate resource:
+
+  # CREATE
+  post("/insert_final_roommate", { :controller => "final_roommates", :action => "create" })
+          
+  # READ
+  get("/final_roommates", { :controller => "final_roommates", :action => "index" })
+  
+  get("/final_roommates/:path_id", { :controller => "final_roommates", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_final_roommate/:path_id", { :controller => "final_roommates", :action => "update" })
+  
+  # DELETE
+  get("/delete_final_roommate/:path_id", { :controller => "final_roommates", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Contact request resource:
 
   # CREATE

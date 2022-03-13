@@ -1,48 +1,85 @@
 <html>
-<head>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/bootstrap.css">
-<style>
-body, html {height: 100%}
+  <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <style>
+      body, html {height: 100%}
 
-table.center {
-    margin-left:auto; 
-    margin-right:auto;
-  }
+      table.center {
+          margin-left:auto;
+          margin-right:auto;
+        }
+    </style>
+  </head>
+  <body>
+    <% @my_sent_requests = RoommateRequest.where({ :sender_id => @current_user.id})%>
+    <table border="5" style="width:75%">
+      <tr>
+        <% @my_sent_requests.each do |a_roommate_request| %>
+          <% @this_request = User.where({ :id => a_roommate_request.recipient_id}).at(0) %>
+          <% @this_request_preferences = Preference.where({ :user_id => a_roommate_request.recipient_id}).at(0) %>
+          <% @requested_by_you = RoommateRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_request.id}).at(0) %>
+          <% @requested_to_you = RoommateRequest.where({ :recipient_id => @current_user.id}).where({ :sender_id => @this_request.id}).at(0) %>
+         
+          <!-- if you've matched-->
+          <% if @requested_by_you != nil && @requested_to_you != nil %>
 
-</style>
-</head>
-<body> 
-<% @my_sent_requests = RoommateRequest.where({ :sender_id => @current_user.id})%>
-<table border="5" style="width:75%">
-<tr>
-<% @my_sent_requests.each do |a_roommate_request| %>
-  <% @this_request = User.where({ :id => a_roommate_request.recipient_id}).at(0) %>
-  <% @this_request_preferences = Preference.where({ :user_id => a_roommate_request.recipient_id}).at(0) %>
-  <% @requested_by_you = RoommateRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_request.id}).at(0) %>
-  <% @requested_to_you = RoommateRequest.where({ :recipient_id => @current_user.id}).where({ :sender_id => @this_request.id}).at(0) %>
-  <% if @requested_by_you != nil && @requested_to_you != nil %>
-  <div class="card mb-3" align="center">
-  <a href="/members_list/<%= @this_request.id %>"><h3 class="card-header"><%= @this_request.first_name%></h3></a>
-  <div class="card-body">
-    <h5 class="card-title"> <span class="badge rounded-pill bg-success">Matched</span></h5>
-    <% if ContactRequest.where( { :sender_id => @current_user.id }).where({ :recipient_id => @this_request.id}).at(0) != nil%>
-    <h5 class="card-title"> <span class="badge rounded-pill bg-info">Contacted</span></h5>
-    <% end %>
-  </div>
-
-  <div align="center">
-    <img src="<%= @this_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
-    </div>
-  <div class="card-body">
-    <p class="card-text"><%= @this_request.email %></p>
-    <p class="card-text"><%= @this_request_preferences.telephone %></p>
-  </div>
-  <% end %>
-<tr>
-<% end %>
-</table>
-
-</body>
+            <!-- If you've contacted them and HAVE finalized plans -->
+            <% @contact_status = ContactRequest.where( { :sender_id => @current_user.id }).where({ :recipient_id => @this_request.id}).at(0) %>
+            <% @final_status_sent = ContactRequest.where( { :sender_id => @current_user.id }).where({ :recipient_id => @this_request.id}).at(0) %>
+            <% @final_status_received = ContactRequest.where( { :sender_id => @current_user.id }).where({ :recipient_id => @this_request.id}).at(0) %>
+            <% if @contact_status != nil && @final_status_received != nil || @final_status_sent != nil %>
+            <!-- If you HAVE NOT finalized plans-->
+          <% else %>
+                      <div class="card mb-3" align="center">
+                <a href="/members_list/<%= @this_request.id %>">
+                  <h3 class="card-header"><%= @this_request.first_name%></h3>
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title"> <span class="badge rounded-pill bg-success">Matched</span></h5>
+                  <h5 class="card-title"> <span class="badge rounded-pill bg-info">Contacted</span></h5>
+                </div>
+                <div align="center">
+                  <img src="<%= @this_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
+                </div>
+                <div class="card-body">
+                  <p class="card-text"><%= @this_request.email %></p>
+                  <p class="card-text"><%= @this_request_preferences.telephone %></p>
+                </div>
+                <div align="center">
+                  <form action="/insert_final_roommate" method="post">
+                    <label>Did you finalize plans with <%= @this_request.first_name %>?</label>
+                    <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
+                    <input type="hidden" name="query_recipient_id" value="<%= @this_request.id %>"></input>
+                  <button class="btn btn-outline-success" type="submit">Finalized</button></a>
+              </form></div>
+          <% end %>
+          <!--If you HAVEN'T contacted them already -->
+        <% else %>
+          <div class="card mb-3" align="center">
+            <a href="/members_list/<%= @this_request.id %>">
+              <h3 class="card-header"><%= @this_request.first_name%></h3>
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"> <span class="badge rounded-pill bg-success">Matched</span></h5>
+              <div align="center">
+                <img src="<%= @this_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
+              </div>
+              <div class="card-body">
+                <p class="card-text"><%= @this_request.email %></p>
+                <p class="card-text"><%= @this_request_preferences.telephone %></p>
+              </div>
+              <form action="/insert_contact_request" method="post">
+                <label>Have you been contacted by OR have you contacted <%= @this_request.first_name %>?</label>
+                <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
+                <input type="hidden" name="query_recipient_id" value="<%= @this_request.id %>"></input>
+              <button class="btn btn-outline-info" type="submit">Yes</button></a>
+          </form>
+        <% end %>
+      <% end %>
+      <br>
+      <tr>
+      </table>
+    </body>

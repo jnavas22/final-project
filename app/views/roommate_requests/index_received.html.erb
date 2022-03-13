@@ -75,7 +75,7 @@
         <% @contacted_by_you = ContactRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_received_request.id}).at(0)%>
          <% if @requested_by_you != nil && @requested_to_you != nil && @contacted_by_you == nil %>
          <td>
-         <span class="badge rounded-pill bg-success">Matched</span>
+         <span class="badge rounded-pill bg-warning">Matched</span>
          </td>
          <% elsif @requested_by_you != nil && @requested_to_you != nil && @contacted_by_you != nil%>
          <td>
@@ -83,7 +83,7 @@
          </td>
          <% else %>
          <td>
-          <span class="badge rounded-pill bg-warning">Pending</span>
+          <span class="badge rounded-pill bg-primary">New</span>
         </td>
         <% end %>
         <td>

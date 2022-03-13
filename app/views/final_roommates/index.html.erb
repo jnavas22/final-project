@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/bootstrap.css">
+<style>
+body, html {height: 100%}
+
+table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+
+</style>
+</head>
+<body> 
+
+<!--IF YOU SENT THE FINAL ROOMMATE -->
+<% @final_sent_roommates = FinalRoommate.where({ :sender_id => @current_user.id})%>
+<% @final_received_roommates = FinalRoommate.where({ :recipient_id => @current_user.id})%>
+<% if @final_sent_roommates != nil %>
+<table border="5" style="width:75%">
+<tr>
+<% @final_sent_roommates.each do |a_final_roommate| %>
+  <% @this_sent_request = User.where({ :id => a_final_roommate.recipient_id}).at(0) %>
+  <% @this_sent_request_preferences = Preference.where({ :user_id => a_final_roommate.recipient_id}).at(0) %>
+  <!-- if you've matched-->
+    <div class="card mb-3" align="center">
+  <a href="/members_list/<%= @this_sent_request.id %>"><h3 class="card-header"><%= @this_sent_request.first_name%></h3></a>
+  <div class="card-body">
+    <div class="alert alert-success" role="alert">
+  Congrats! <%= @this_sent_request.first_name %> is now your new <%= @current_user.to_city%> roommate!
+</div>
+    <div align="center">
+    <img src="<%= @this_sent_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
+    </div>
+  <div class="card-body">
+    <p class="card-text"><%= @this_sent_request.email %></p>
+    <p class="card-text"><%= @this_sent_request_preferences.telephone %></p>
+  </div>
+<% end %>
+<% elsif @final_received_roommates != nil %>
+<table border="5" style="width:75%">
+<tr>
+<% @final_roommates.each do |a_final_roommate| %>
+  <% @this_received_request = User.where({ :id => a_final_roommate.sender_id}).at(0) %>
+  <% @this_received_request_preferences = Preference.where({ :user_id => a_final_roommate.sender_id}).at(0) %>
+  <!-- if you've matched-->
+    <div class="card mb-3" align="center">
+  <a href="/members_list/<%= @this_received_request.id %>"><h3 class="card-header"><%= @this_received_request.first_name%></h3></a>
+  <div class="card-body">
+    <h5 class="card-title"> <span class="badge rounded-pill bg-success">Matched</span></h5>
+    <h5 class="card-title"> <span class="badge rounded-pill bg-info">Contacted</span></h5></div>
+    <div align="center">
+    <img src="<%= @this_received_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
+    </div>
+  <div class="card-body">
+    <p class="card-text"><%= @this_received_request.email %></p>
+    <p class="card-text"><%= @this_received_request_preferences.telephone %></p>
+  </div>
+<% end %>
+<% else %>
+<% end %>
+</table>
+
+</body>
+
+
+
+<!--<div>
+  <div>
+    <h2>
+      Add a new final roommate
+    </h2>
+
+    <form action="/insert_final_roommate" method="post">
+      <div>
+        <label for="sender_id_box">
+          Sender
+        </label>
+
+        <input type="text" id="sender_id_box" name="query_sender_id">
+      </div>
+
+      <div>
+        <label for="recipient_id_box">
+          Recipient
+        </label>
+
+        <input type="text" id="recipient_id_box" name="query_recipient_id">
+      </div>
+
+      <button>
+        Create final roommate
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Sender
+        </th>
+
+        <th>
+          Recipient
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_final_roommates.each do |a_final_roommate| %>
+      <tr>
+        <td>
+          <%= a_final_roommate.id %>
+        </td>
+
+        <td>
+          <%= a_final_roommate.sender_id %>
+        </td>
+
+        <td>
+          <%= a_final_roommate.recipient_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_final_roommate.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_final_roommate.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/final_roommates/<%= a_final_roommate.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div> -->

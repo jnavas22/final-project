@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_13_172851) do
+ActiveRecord::Schema.define(version: 2022_03_13_220633) do
 
   create_table "contact_requests", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "final_roommates", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
     t.datetime "created_at", precision: 6, null: false

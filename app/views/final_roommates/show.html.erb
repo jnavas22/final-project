@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Final roommate #<%= @the_final_roommate.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/final_roommates">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_final_roommate/<%= @the_final_roommate.id %>">
+          Delete final roommate
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Sender
+      </dt>
+      <dd>
+        <%= @the_final_roommate.sender_id %>
+      </dd>
+
+      <dt>
+        Recipient
+      </dt>
+      <dd>
+        <%= @the_final_roommate.recipient_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_final_roommate.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_final_roommate.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit final roommate
+    </h2>
+
+    <form action="/modify_final_roommate/<%= @the_final_roommate.id %>"  method="post" >
+      <div>
+        <label for="sender_id_box">
+          Sender
+        </label>
+
+        <input type="text" id="sender_id_box" name="query_sender_id" value="<%= @the_final_roommate.sender_id %>">
+      </div>
+
+      <div>
+        <label for="recipient_id_box">
+          Recipient
+        </label>
+
+        <input type="text" id="recipient_id_box" name="query_recipient_id" value="<%= @the_final_roommate.recipient_id %>">
+      </div>
+
+      <button>
+        Update final roommate
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

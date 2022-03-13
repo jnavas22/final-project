@@ -29,7 +29,7 @@ table.center {
 
 <!-- If I'm not the latest sender of this request -->
 <% if @the_sender.id != @current_user.id %>
-<div class="alert alert-success" role="alert">
+<div class="alert alert-warning" role="alert">
   You've matched with <%= @the_sender.first_name %>!
 </div>
 <th  style="text-align:center">
@@ -87,7 +87,7 @@ table.center {
 <form action="/insert_contact_request" method="post">
   <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
   <input type="hidden" name="query_recipient_id" value="<%= @the_sender.id %>"></input>
-  <button class="btn btn-outline-success" type="submit">Done</button></a>
+  <button class="btn btn-outline-info" type="submit">Done</button></a>
 </form>
 </div> 
         </dd>
@@ -119,7 +119,7 @@ table.center {
 <% @the_recipient = User.where({ :id => @the_roommate_request.recipient_id}).order({ :created_at => :desc}).at(0) %>
 <% @the_preference = Preference.where({ :user_id => @the_roommate_request.recipient_id}).order({ :created_at => :desc}).at(0)%>
 
-<div class="alert alert-success" role="alert">
+<div class="alert alert-warning" role="alert">
   You've matched with <%= @the_recipient.first_name %>!
 </div>
 <th  style="text-align:center">
@@ -189,7 +189,7 @@ table.center {
 <form action="/insert_contact_request" method="post">
   <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
   <input type="hidden" name="query_recipient_id" value="<%= @the_recipient.id %>"></input>
-  <button class="btn btn-outline-success" type="submit">Done</button></a>
+  <button class="btn btn-outline-info" type="submit">Done</button></a>
 </form>
 </div> 
         </dd>

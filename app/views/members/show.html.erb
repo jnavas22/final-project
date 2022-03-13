@@ -48,7 +48,7 @@ table.center {
     <td>
       <div>
         <dt>
-          Profile picture
+       
         </dt>
         <dd>
           <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 50%;">
@@ -96,22 +96,10 @@ table.center {
     <td>
       <div>
         <dt>
-          Looking for this number of roommates
+          Looking for  
         </dt>
         <dd>
-          <%= @the_preference.roommate_num %>
-        </dd>
-      </div>
-    </td>
-  </tr>
-  <tr style="text-align:center">
-    <td>
-      <div>
-        <dt>
-          Looking for this number of bathrooms
-        </dt>
-        <dd>
-          <%= @the_preference.bathroom_num %>
+        <%= @the_preference.roommate_num %> roommate(s), <%= @the_preference.bathroom_num %> bathroom(s) 
         </dd>
       </div>
     </td>

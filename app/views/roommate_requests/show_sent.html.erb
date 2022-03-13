@@ -24,7 +24,7 @@ table.center {
 <form action="/delete_roommate_request/<%= @the_roommate_request.id %>">
   <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
   <input type="hidden" name="query_recipient_id" value="<%= @this_user.id %>"></input>
-  <button class="btn btn-lg btn-outline-danger" type="submit">Remove Roommate Inquiry</button></a>
+  <button class="btn btn-outline-danger" type="submit">Remove Roommate Inquiry</button></a>
 </form>
 </div> 
 <div>
@@ -40,7 +40,7 @@ table.center {
     <td>
       <div>
         <dt>
-          Profile picture
+         
         </dt>
         <dd>
           <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 50%;">
@@ -88,22 +88,10 @@ table.center {
     <td>
       <div>
         <dt>
-          Looking for this number of roommates
+          Looking for 
         </dt>
         <dd>
-          <%= @the_preference.roommate_num %>
-        </dd>
-      </div>
-    </td>
-  </tr>
-  <tr style="text-align:center">
-    <td>
-      <div>
-        <dt>
-          Looking for this number of bathrooms
-        </dt>
-        <dd>
-          <%= @the_preference.bathroom_num %>
+          <%= @the_preference.roommate_num %> roommates, <%= @the_preference.bathroom_num %> bathroom(s)
         </dd>
       </div>
     </td>
