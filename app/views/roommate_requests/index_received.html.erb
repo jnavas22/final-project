@@ -6,6 +6,8 @@
       <%= @current_user.first_name%>'s Received Roommates Inquiries
     </h1>
   </div>
+   <div align="center"><a href="/members">Continue searching <a></div>
+  <br>
 </div>
 <div>
   <div align="center">
@@ -38,6 +40,9 @@
         <th>
           Show More
         </th>
+          <th>
+          Delete
+        </th>
       </tr>
       <% @my_received_requests = RoommateRequest.where({ :recipient_id => @current_user.id})%>
       <% @my_received_requests.each do |a_roommate_request| %>
@@ -69,37 +74,42 @@
         <td>
           <%= time_ago_in_words(a_roommate_request.created_at) %> ago
         </td>
-        <!--if you sent them a preference, and they sent you a preference, matched -->
         <% @requested_by_you = RoommateRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_received_request.id}).at(0) %>
         <% @requested_to_you = RoommateRequest.where({ :recipient_id => @current_user.id}).where({ :sender_id => @this_received_request.id}).at(0) %>
         <% @contacted_by_you = ContactRequest.where({ :sender_id => @current_user.id}).where({ :recipient_id => @this_received_request.id}).at(0)%>
+         
+         <!--if you sent them a preference, and they sent you a preference, and only matched -->
          <% if @requested_by_you != nil && @requested_to_you != nil && @contacted_by_you == nil %>
          <td>
          <span class="badge rounded-pill bg-warning">Matched</span>
          </td>
+         <td><a href="/personal_info/<%= a_roommate_request.id %>">Contact info</a></td>
+          <td>
+           <a href = "/delete_roommate_request/<%= a_roommate_request.id %>">Delete</a>
+        </td>
+        <!--if you sent them a preference, and they sent you a preference, and matched + contacted -->
          <% elsif @requested_by_you != nil && @requested_to_you != nil && @contacted_by_you != nil%>
          <td>
          <span class="badge rounded-pill bg-info">Contacted</span>
          </td>
+         <td><a href="/personal_info/<%= a_roommate_request.id %>">Contact info</a></td>
+         <td>
+           <a href = "/delete_contact_request/<%= a_roommate_request.id %>">Delete</a>
+        </td>
          <% else %>
          <td>
           <span class="badge rounded-pill bg-primary">New</span>
         </td>
-        <% end %>
         <td>
-         <% if @requested_by_you != nil && @requested_to_you != nil %> <!-- if they've matched-->
-
-        <a href="/personal_info/<%= a_roommate_request.id %>">Contact info</a>
-
-        <% else %>
          <a href="/received_roommate_requests/<%= a_roommate_request.id %>">
             Show details
-          </a>
-        <% end %>
-
+          </a></td>
+        <td>
+           <a href = "/delete_roommate_request/<%= a_roommate_request.id %>">Delete</a>
         </td>
         <% end %>
       </tr>
+      <% end %>
     </table>
   </div>
 </div>

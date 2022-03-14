@@ -19,47 +19,38 @@ table.center {
 <!--IF YOU SENT THE FINAL ROOMMATE -->
 <% @final_sent_roommates = FinalRoommate.where({ :sender_id => @current_user.id})%>
 <% @final_received_roommates = FinalRoommate.where({ :recipient_id => @current_user.id})%>
+
+<!--If you have a list of finalized roommates -->
 <% if @final_sent_roommates != nil %>
 <table border="5" style="width:75%">
 <tr>
+<!-- do an each on the list -->
 <% @final_sent_roommates.each do |a_final_roommate| %>
   <% @this_sent_request = User.where({ :id => a_final_roommate.recipient_id}).at(0) %>
-  <% @this_sent_request_preferences = Preference.where({ :user_id => a_final_roommate.recipient_id}).at(0) %>
-  <!-- if you've matched-->
-    <div class="card mb-3" align="center">
-  <a href="/members_list/<%= @this_sent_request.id %>"><h3 class="card-header"><%= @this_sent_request.first_name%></h3></a>
-  <div class="card-body">
-    <div class="alert alert-success" role="alert">
-  Congrats! <%= @this_sent_request.first_name %> is now your new <%= @current_user.to_city%> roommate!
-</div>
-    <div align="center">
-    <img src="<%= @this_sent_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
-    </div>
-  <div class="card-body">
-    <p class="card-text"><%= @this_sent_request.email %></p>
-    <p class="card-text"><%= @this_sent_request_preferences.telephone %></p>
-  </div>
-<% end %>
-<% elsif @final_received_roommates != nil %>
-<table border="5" style="width:75%">
-<tr>
-<% @final_roommates.each do |a_final_roommate| %>
-  <% @this_received_request = User.where({ :id => a_final_roommate.sender_id}).at(0) %>
-  <% @this_received_request_preferences = Preference.where({ :user_id => a_final_roommate.sender_id}).at(0) %>
-  <!-- if you've matched-->
-    <div class="card mb-3" align="center">
-  <a href="/members_list/<%= @this_received_request.id %>"><h3 class="card-header"><%= @this_received_request.first_name%></h3></a>
-  <div class="card-body">
-    <h5 class="card-title"> <span class="badge rounded-pill bg-success">Matched</span></h5>
-    <h5 class="card-title"> <span class="badge rounded-pill bg-info">Contacted</span></h5></div>
-    <div align="center">
-    <img src="<%= @this_received_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
-    </div>
-  <div class="card-body">
-    <p class="card-text"><%= @this_received_request.email %></p>
-    <p class="card-text"><%= @this_received_request_preferences.telephone %></p>
-  </div>
-<% end %>
+  <% the_roommate_request = RoommateRequest.where({ :recipient_id => @this_sent_request.id}).where({:sender_id => @current_user.id }).at(0)%>
+  <!--if the request (as norma0) exists -->
+  <% if the_roommate_request != nil %>
+    <% @this_sent_request = User.where({ :id => a_final_roommate.recipient_id}).at(0) %>
+    <% @this_sent_request_preferences = Preference.where({ :user_id => a_final_roommate.recipient_id}).at(0) %>
+        <!-- if you've matched-->
+      <div class="card mb-3" align="center">
+          <a href="/members_list/<%= @this_sent_request.id %>"><h3 class="card-header"><%= @this_sent_request.first_name%></h3></a>
+          <div class="card-body">
+          <div class="alert alert-success" role="alert">
+            Congrats! <%= @this_sent_request.first_name %> is now your new <%= @current_user.to_city%> roommate!
+          </div>
+            <div align="center">
+            <img src="<%= @this_sent_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
+            </div>
+          <div class="card-body">
+            <p class="card-text"><%= @this_sent_request.email %></p>
+            <p class="card-text"><%= @this_sent_request_preferences.telephone %></p>
+            <% the_roommate_request = RoommateRequest.where({ :recipient_id => @this_sent_request.id}).where({:sender_id => @current_user.id }).at(0)%>
+            Did something not work out? Remove <%= @this_sent_request.first_name %> <a href="/delete_roommate_request/<%= the_roommate_request.id %>">here</a>
+             </div>
+      <% else %>
+    <% end %>
+  <% end %> 
 <% else %>
 <% end %>
 </table>

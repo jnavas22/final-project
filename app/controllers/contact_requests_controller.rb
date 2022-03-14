@@ -51,6 +51,6 @@ class ContactRequestsController < ApplicationController
 
     the_contact_request.destroy
 
-    redirect_to("/contact_requests", { :notice => "Contact request deleted successfully."} )
+    redirect_to("/updates", { :notice => "Contact request deleted successfully."} )
   end
 end
