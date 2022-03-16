@@ -24,6 +24,7 @@
         </tr>
         <td><%= search_form_for(@q, :url => "/members") do |f|  %>
             <h6>First filter</h6>
+            
             <%= f.grouping_fields(f.object.new_grouping) do |g| %>
               <%= g.condition_fields(g.object.new_condition) do |c| %>
                 <%= c.attribute_fields do |a| %>
