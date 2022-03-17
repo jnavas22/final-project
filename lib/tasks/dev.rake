@@ -7,7 +7,7 @@ task({ :sample_data => :environment }) do
   emails = ["josselyn@example.com", "sarah@example.com", "mari@example.com", "antonio@example.com", "diego@example.com", "bruce@example.com", "sheila@example.com"]
   bool = [true, false]
   from_cities = ["Chicago", "Miami", "Boston", "Dallas", "Los Angeles", "Miami", "Chicago"]
-  to_cities = ["New York City", "New York", "New York City", "Chicago", "Miami", "Seattle", "Seattle"]
+  to_cities = ["New York City", "New York City", "New York City", "Chicago", "Miami", "Seattle", "Seattle"]
   genders = ["Female", "Female", "Female", "Male", "Male", "Male", "Female"]
   universities = ["University of Chicago", "Indiana University", "Northwestern University", "Yale University"]
   date1 = Date.parse("2022-06-03")
@@ -32,6 +32,10 @@ task({ :sample_data => :environment }) do
     user.movedate = dates.sample
     user.save
   end
+
+  
+  cleanliness = ["10", "5", "6", "3", "8"]
+  industries = ["Financial Services", "Research", "Consulting", "Other Graduate Program", "Engineering"] 
 
   id_1 = User.where(:first_name => "Josselyn").at(0).id
   id_2 = User.where(:first_name => "Sarah").at(0).id
@@ -66,6 +70,9 @@ task({ :sample_data => :environment }) do
     preference.transportation = bool.sample
     preference.picture = pictures.at(count)
     preference.user_id = ids.at(count)
+    preference.clean = cleanliness.sample
+    preference.telephone = "123-456-7890"
+    preference.industry = industries.sample
     preference.save
   end
   p "Added #{User.count} Users"

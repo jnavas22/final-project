@@ -20,11 +20,21 @@
     </style>
   </head>
   <body>
+  <% if alert %>
+    <div align="center" class="alert alert-danger" role="alert">
+      <%= alert %>
+      </div>
+  <% end %>
+  <% if notice %>
+    <div align="center" class="alert alert-warning" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
     <br>
     <h1 align="center">Sign up</h1>
     <hr>
     <div>
-        <form align="center" action="/insert_user" method="post">
+      <form align="center" action="/insert_user" method="post">
         <table style="width:50%" class="center" border-spacing="15px">
           <div class="form-group row">
             <tr>
@@ -90,7 +100,7 @@
                   </div>
                 </td>
               </tr>
-               <tr>
+              <tr>
                 <td><label for="movedate_box" class="col-form-label">Expected Move-in Date</label></td>
                 <td>
                   <div class="col-sm-10">
@@ -115,93 +125,12 @@
                 </td>
               </tr>
               <tr>
-                <td> 
+                <td>
                 </td>
               </tr>
             </table>
             <br>
             <button type="submit" class="btn btn-primary">Sign-up</button></div>
-          </form>
-          
-          <!--<table border="1" style="width:20%">
-  <form align="center" action="/insert_user" method="post">
-    <div class="form-group row">
-      <label for="first_name_box" class="col-sm-2 col-form-label">First Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="query_first_name" id="first_name_box" placeholder="e.g. Antonio">
-      </div>
-    </div>
-    <br>
-    <div class="form-group row">
-      <label for="last_name_box" class="col-sm-2 col-form-label">Last Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="query_last_name" id="last_name_box" placeholder="e.g Cruz">
-      </div>
-    </div>
-    <br>
-    <div class="form-group row">
-      <label for="email_box" class="col-sm-2 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="query_email" id="email_box" placeholder="e.g. email@example.com">
-      </div>
-    </div>
-    <br>
-    <div class="form-group row">
-      <label for="university_box" class="col-sm-2 col-form-label">University</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="query_university" id="university_box" placeholder="e.g. University of Chicago">
-      </div>
-    </div>
-    <br>
-    <div class="form-group row">
-      <label for="gender_box" class="col-sm-2 col-form-label"> Gender </label>
-      <div class="col-sm-10">
-        <select type="text" class="form-control" name="query_gender" id="city_from_id_box" placeholder="e.g. Male">
-          <option selected>Choose...</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Transgender">Transgender</option>
-          <option value="Non-binary/non-conforming">Non-binary/non-conforming</option>
-          <option value = "Prefer not to respond">Prefer not to respond</option>
-        </select>
-      </div>
-    </div>
-    <br>
-    <div class="form-group row">
-      <label for="city_from_id_box" class="col-sm-2 col-form-label"> Current City</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="query_from_city" id="city_from_id_box" placeholder="e.g. Chicago">
-      </div>
-    </div>
-    <br>
-    <div class="form-group row">
-      <label for="city_to_id_box" class="col-sm-2 col-form-label"> Destination City </label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="query_to_city" id="city_from_id_box" placeholder="e.g. New York City">
-      </div>
-    </div>
-    <br>
-    <div class="form-group row">
-      <label for="password_box" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" name="query_password" id="password_box" placeholder="Choose a password">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="password_confirmation_box" class="col-sm-2 col-form-label"> Confirm Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" name="query_password_confirmation" id="password_confirmation_box" placeholder="Confirm your password">
-      </div>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Sign up </button>
-  </form>
-</table>
-  <hr>
-  <p align="center">
-    Or, <a href="/user_sign_in">Sign in</a> instead.
-  </p>
-  <hr>
-</div>-->
-        </body>
-      </html>
+        </form>
+      </body>
+    </html>

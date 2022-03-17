@@ -1,131 +1,123 @@
 <html>
-<head>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/bootstrap.css">
-<style>
-body, html {height: 100%}
+  <head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bootstrap.css">
+    <style>
+      body, html {height: 100%}
 
-table.center {
-    margin-left:auto; 
-    margin-right:auto;
-  }
-
-</style>
-</head>
-<body> 
-
-
-<!-- the info of user who sent request-->
-<% @this_received_request = User.where({ :id => @the_roommate_request.sender_id }).at(0)%>
-
-<!-- the preference of user who sent request -->
-<% @the_preference = Preference.where({ :user_id =>  @the_roommate_request.sender_id }).order({ :created_at => :desc}).at(0)%>
-
-<!-- the roommate request in question-->
-<% @the_roommate_request = RoommateRequest.where({ :recipient_id => @current_user.id}).at(0)%>
-
-<!-- respsonse buttons-->
-<table table border="0" class="center">
-<tr>
-<td>
-<div align="center" class="wrapper">
-  <form action="/insert_roommate_request" method="post">
-  <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
-  <input type="hidden" name="query_recipient_id" value="<%= @this_received_request.id %>"></input>
-  <button class="btn btn-outline-success" type="submit">Accept Inquiry</Inp></button></a>
-  </form>
-</div>
-</td>
-<td>
-<div align="center" class="wrapper">
-  <form action="/delete_roommate_request/<%= @the_roommate_request.id %>">
-  <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
-  <input type="hidden" name="query_recipient_id" value="<%= @this_received_request.id %>"></input>
-  <button class="btn btn-outline-danger" type="submit">Decline Inquiry</Inp></button></a>
-  </form>
+      table.center {
+          margin-left:auto;
+          margin-right:auto;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- the info of user who sent request-->
+    <% @this_received_request = User.where({ :id => @the_roommate_request.sender_id }).at(0)%>
+    <!-- the preference of user who sent request -->
+    <% @the_preference = Preference.where({ :user_id =>  @the_roommate_request.sender_id }).order({ :created_at => :desc}).at(0)%>
+    <!-- the roommate request in question-->
+    <% @the_roommate_request = RoommateRequest.where({ :recipient_id => @current_user.id}).at(0)%>
+    <!-- respsonse buttons-->
+    <table table border="0" class="center">
+      <tr>
+        <td>
+          <div align="center" class="wrapper">
+            <form action="/insert_roommate_request" method="post">
+              <input type="hidden" name="query_sender_id" value="<%= @current_user.id %>"</input>
+              <input type="hidden" name="query_recipient_id" value="<%= @this_received_request.id %>"></input>
+            <button class="btn btn-outline-success" type="submit">Accept Inquiry</Inp></button></a>
+      </form>
+    </div>
+  </td>
+  <td>
+    <div align="center" class="wrapper">
+      <form action="/delete_roommate_request/<%= @the_roommate_request.id %>">
+        <input type="hidden" name="query_sender_id" value="<%= @this_received_request.id %>"</input>
+        <input type="hidden" name="query_recipient_id" value="<%= @current_user.id %>"></input>
+      <button class="btn btn-outline-danger" type="submit">Decline Inquiry</Inp></button></a>
+</form>
 </div>
 </td>
 </tr>
 </table>
-
 <br>
 <div align="center">
-<table border="1" style="width:50%" class="center">
-  <th  style="text-align:center">
-  <br>
-    <h1>
-      <%= @this_received_request.first_name %>'s Details
-    </h1>
-  </th>
-  <tr style="text-align:center">
-    <td>
-      <div>
-        <dt>
-         
-        </dt>
-        <dd>
-          <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 50%;">
-        </dd>
-      </div>
-    </td>
-  </tr>
-  <tr style="text-align:center">
-    <td>
-      <div>
-        <dt>
-          I am a
-        </dt>
-        <dd>
-          <%= @the_preference.person_type %>
-        </dd>
-      </div>
-    </td>
-  </tr>
-  <tr style="text-align:center">
-    <td>
-      <div>
-        <dt>
-          My post-graduation plan is 
-        </dt>
-        <dd>
-          <%= @the_preference.industry %>
-        </dd>
-      </div>
-    </td>
-  </tr>
-  <tr style="text-align:center">
-    <td>
-      <div>
-        <dt>
-          Maximum per person rent I'm willing to pay
-        </dt>
-        <dd>
-          $<%= @the_preference.max_rent %>
-        </dd>
-      </div>
-    </td>
-  </tr>
-  <tr style="text-align:center">
-    <td>
-      <div>
-        <dt>
-          Looking for
-        </dt>
-        <dd>
-          <%= @the_preference.roommate_num %> roommate(s), <%= @the_preference.bathroom_num %> bathroom(s)
-        </dd>
-      </div>
-    </td>
-  </tr>
-  <tr style="text-align:center">
-    <td>
-      <div>
-        <dt>
-          Looking for the following amenities
-        </dt>
-        <dd>
+  <table border="1" style="width:50%" class="center">
+    <th  style="text-align:center">
+      <br>
+      <h1>
+        <%= @this_received_request.first_name %>'s Details
+      </h1>
+    </th>
+    <tr style="text-align:center">
+      <td>
+        <div>
+          <dt>
+          </dt>
+          <dd>
+            <img src="<%= @the_preference.picture %>" class="img-responsive"  style="max-width: 50%;">
+          </dd>
+        </div>
+      </td>
+    </tr>
+    <tr style="text-align:center">
+      <td>
+        <div>
+          <dt>
+            I am a
+          </dt>
+          <dd>
+            <%= @the_preference.person_type %>
+          </dd>
+        </div>
+      </td>
+    </tr>
+    <tr style="text-align:center">
+      <td>
+        <div>
+          <dt>
+            My post-graduation plan is 
+          </dt>
+          <dd>
+            <%= @the_preference.industry %>
+          </dd>
+        </div>
+      </td>
+    </tr>
+    <tr style="text-align:center">
+      <td>
+        <div>
+          <dt>
+            Maximum per person rent I'm willing to pay
+          </dt>
+          <dd>
+            $<%= @the_preference.max_rent %>
+          </dd>
+        </div>
+      </td>
+    </tr>
+    <tr style="text-align:center">
+      <td>
+        <div>
+          <dt>
+            Looking for
+          </dt>
+          <dd>
+            <%= @the_preference.roommate_num %> roommate(s), <%= @the_preference.bathroom_num %> bathroom(s)
+          </dd>
+        </div>
+      </td>
+    </tr>
+    <tr style="text-align:center">
+      <td>
+        <div>
+          <dt>
+            Looking for the following amenities
+          </dt>
+          <dd>
             <% if @the_preference.elevator %>
               <span class="badge rounded-pill bg-warning"> Elevator </span>
             <% end %>
@@ -144,14 +136,13 @@ table.center {
             <% if @the_preference.pets %>
               <span class="badge rounded-pill bg-warning">Pet-friendly</span>
             <%end %>
-        </dd>
-      </div>
-    </td>
-  </tr>
-</table>
+          </dd>
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>
 <br>
 <div align="center"><a href="/received_roommate_requests">Go back <a></div>
-<hr>
-
-<hr>
+    <hr>
+    <hr>
