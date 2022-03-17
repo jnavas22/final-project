@@ -37,7 +37,7 @@ table.center {
           <a href="/members_list/<%= @this_sent_request.id %>"><h3 class="card-header"><%= @this_sent_request.first_name%></h3></a>
           <div class="card-body">
           <div class="alert alert-success" role="alert">
-            Congrats! <%= @this_sent_request.first_name %> is now your new <%= @current_user.to_city%> roommate!
+            Congratulations! <%= @this_sent_request.first_name %> is now your new <%= @current_user.to_city%> roommate!
           </div>
             <div align="center">
             <img src="<%= @this_sent_request_preferences.picture %>" class="img-responsive"  style="max-width: 25%;">
